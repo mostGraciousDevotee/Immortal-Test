@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Immortal.Entities;
 using UnityEngine;
@@ -17,6 +16,7 @@ namespace Immortal.GameLogic
         
         public event Action<IUnit> UnitActive;
 
+#region AddRemoveUnit
         public void AddUnit(IUnit unit)
         {
             _unitList.Add(unit);
@@ -29,15 +29,27 @@ namespace Immortal.GameLogic
             _unitList.Remove(unit);
         }
 
+        void Enqueue(IUnit unit)
+        {
+            _unitQueue.Enqueue(unit);
+        }
+#endregion
+
+#region StartAndProcess
         public void Start()
+        {
+            StartGuard();
+            _hasStarted = true;
+            ProcessUnitTurn();
+        }
+
+        void StartGuard()
         {
             if (_hasStarted)
             {
                 Debug.Log("A process is attempting to start a running TurnManager");
                 return;
             }
-            _hasStarted = true;
-            ProcessUnitTurn();
         }
 
         void ProcessUnitTurn()
@@ -55,12 +67,17 @@ namespace Immortal.GameLogic
             else
             {
                 _processGuard++;
-                if (_processGuard >= 100)
-                {
-                    throw new Exception("TurnManager Process overflow");
-                }
+                ProcessGuard();
                 UpdateUnitReadiness();
                 ProcessUnitTurn();
+            }
+        }
+
+        void ProcessGuard()
+        {
+            if (_processGuard >= 100)
+            {
+                throw new Exception("TurnManager Process overflow");
             }
         }
 
@@ -76,12 +93,9 @@ namespace Immortal.GameLogic
                 unit.UpdateReadiness();
             }
         }
+#endregion
 
-        void Enqueue(IUnit unit)
-        {
-            _unitQueue.Enqueue(unit);
-        }
-
+#region Dispose
         public void Dispose()
         {
             RemoveAllUnits();
@@ -106,6 +120,7 @@ namespace Immortal.GameLogic
                 unit.UnitReady -= Enqueue;
             }
         }
+#endregion
     }
 
     public interface ITurnManager : IDisposable
