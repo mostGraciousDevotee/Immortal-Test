@@ -5,7 +5,7 @@ namespace Immortal.Entities
         string _name;
         int _speed;
         int _readiness;
-        const int UNIT_READY = 100;
+        const int READY_TO_ACT = 100;
 
         public Unit(string name, int speed)
         {
