@@ -9,7 +9,18 @@ namespace Immortal.Test
         {
             if (!expected.Equals(result))
             {
-                Debug.Log(errorMessage);
+                Debug.LogError(errorMessage);
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool AreEqualRef<T>(T expected, T result, string errorMessage)
+        {
+            if (!ReferenceEquals(expected, result))
+            {
+                Debug.LogError(errorMessage);
                 return false;
             }
 

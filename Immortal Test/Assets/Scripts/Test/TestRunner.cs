@@ -10,13 +10,16 @@ namespace Immortal.Test
         void Start()
         {
             var unitPropertyTest = new UnitPropertyTest();
+            var unitReadyTest = new UnitReadyTest();
 
             _tests.Add(unitPropertyTest);
+            _tests.Add(unitReadyTest);
 
             foreach(BaseTest test in _tests)
             {
                 if (test.Test() != true)
                 {
+                    Debug.LogError("Test run failed!");
                     return;
                 }
             }
