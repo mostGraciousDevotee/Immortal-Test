@@ -11,9 +11,11 @@ namespace Immortal.Test
         {
             var unitPropertyTest = new UnitPropertyTest();
             var unitReadyTest = new UnitReadyTest();
+            var turnManagerStartTest = new TurnManagerStartTest();
 
             _tests.Add(unitPropertyTest);
             _tests.Add(unitReadyTest);
+            _tests.Add(turnManagerStartTest);
 
             foreach(BaseTest test in _tests)
             {
