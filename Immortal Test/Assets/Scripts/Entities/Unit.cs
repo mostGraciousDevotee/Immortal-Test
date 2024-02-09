@@ -31,6 +31,11 @@ namespace Immortal.Entities
                 UnitReady?.Invoke(this);
             }
         }
+
+        public void EndTurn()
+        {
+            
+        }
     }
 
     public interface IUnit
@@ -39,5 +44,6 @@ namespace Immortal.Entities
         string Name { get; }
         int Speed { get; }
         void UpdateReadiness();
+        void EndTurn();
     }
 }

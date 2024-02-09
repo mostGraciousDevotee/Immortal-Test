@@ -1,5 +1,4 @@
 using Immortal.App;
-using Immortal.Infra;
 
 namespace Immortal.Test
 {
@@ -8,12 +7,11 @@ namespace Immortal.Test
 
         public override bool Test()
         {
-            var sceneLoader = new MockSceneLoader();
             var gameFactory = new GameFactory();
-            var game = new Game(sceneLoader, gameFactory);
-            game.NewGame();
+            var game = new Game(gameFactory);
 
-            return Assert.AreEqual<bool>(true, sceneLoader.LoadNewGameCalled, this.ErrorMessage);
+            // return Assert.AreEqual<bool>(true, sceneLoader.LoadNewGameCalled, this.ErrorMessage);
+            return false;
         }
     }
 }

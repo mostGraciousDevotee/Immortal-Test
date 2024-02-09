@@ -7,7 +7,6 @@ namespace Immortal.App
 {
     public class TurnManager : ITurnManager
     {
-        bool _hasStarted;
         int _processGuard;
 
         IUnit _currentUnit;
@@ -39,18 +38,13 @@ namespace Immortal.App
         #region StartAndProcess
         public void Start()
         {
-            StartGuard();
-            _hasStarted = true;
             ProcessUnitTurn();
         }
 
-        void StartGuard()
+        public void Endturn()
         {
-            if (_hasStarted)
-            {
-                Debug.Log("A process is attempting to start a running TurnManager");
-                return;
-            }
+            _currentUnit.EndTurn();
+            ProcessUnitTurn();
         }
 
         void ProcessUnitTurn()

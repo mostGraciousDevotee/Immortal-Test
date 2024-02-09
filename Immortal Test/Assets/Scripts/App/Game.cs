@@ -5,23 +5,16 @@ namespace Immortal.App
 {
     public class Game : IGame
     {   
-        ISceneLoader _sceneLoader;
         IFactory _factory;
 
-        public Game(ISceneLoader sceneLoader, IFactory factory)
+        public Game(IFactory factory)
         {
-            _sceneLoader = sceneLoader;
             _factory = factory;
         }
         
-        public void NewGame()
+        public void Run()
         {
-            _sceneLoader.LoadNewGame();
-        }
-
-        void Run()
-        {
-
+            _factory.GetTurnManager().Start();
         }
 
         public void Load()
@@ -32,12 +25,12 @@ namespace Immortal.App
 
     public interface IGame
     {
-        void NewGame();
-        void Load();
+        void Run();
     }
 
     public interface ISceneLoader
     {
+        event Action<string, string> SceneLoaded;
         void LoadNewGame();
         void LoadSavedGame();
     }

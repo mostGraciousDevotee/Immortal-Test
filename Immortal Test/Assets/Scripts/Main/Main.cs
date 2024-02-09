@@ -1,4 +1,3 @@
-using Immortal.App;
 using Immortal.Infra;
 using Immortal.UI;
 using UnityEditor;
@@ -11,17 +10,10 @@ namespace Immortal.Main
         [SerializeField] MainPanel _mainPanel;
         SceneLoader _sceneLoader;
         
-        IGame _game;
-        GameFactory _mainFactory;
         
         void Awake()
-        {
-            DontDestroyOnLoad(this);
-            
+        {   
             _sceneLoader = GetComponent<SceneLoader>();
-
-            _mainFactory = new GameFactory();
-            _game = new Game(_sceneLoader, _mainFactory);
             
             _mainPanel.NewButtonPressed += NewGame;
             _mainPanel.QuitButtonPressed += Quit;
@@ -32,7 +24,7 @@ namespace Immortal.Main
             _mainPanel.NewButtonPressed -= NewGame;
             _mainPanel.QuitButtonPressed -= Quit;
 
-            _game.NewGame();
+            _sceneLoader.LoadNewGame();
         }
         
         void Quit()
