@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Immortal.Entities;
 using UnityEngine;
 
-namespace Immortal.GameLogic
+namespace Immortal.App
 {
     public class TurnManager : ITurnManager
     {
@@ -16,7 +16,7 @@ namespace Immortal.GameLogic
         
         public event Action<IUnit> UnitActive;
 
-#region AddRemoveUnit
+        #region AddRemoveUnit
         public void AddUnit(IUnit unit)
         {
             _unitList.Add(unit);
@@ -33,9 +33,10 @@ namespace Immortal.GameLogic
         {
             _unitQueue.Enqueue(unit);
         }
-#endregion
+        
+        #endregion
 
-#region StartAndProcess
+        #region StartAndProcess
         public void Start()
         {
             StartGuard();
@@ -93,9 +94,11 @@ namespace Immortal.GameLogic
                 unit.UpdateReadiness();
             }
         }
-#endregion
 
-#region Dispose
+        #endregion
+
+        #region Dispose
+
         public void Dispose()
         {
             RemoveAllUnits();
@@ -120,7 +123,8 @@ namespace Immortal.GameLogic
                 unit.UnitReady -= Enqueue;
             }
         }
-#endregion
+
+        #endregion
     }
 
     public interface ITurnManager : IDisposable

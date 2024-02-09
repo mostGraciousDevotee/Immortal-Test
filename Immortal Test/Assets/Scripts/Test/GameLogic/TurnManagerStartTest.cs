@@ -1,4 +1,4 @@
-using Immortal.GameLogic;
+using Immortal.App;
 using Immortal.Entities;
 
 namespace Immortal.Test
