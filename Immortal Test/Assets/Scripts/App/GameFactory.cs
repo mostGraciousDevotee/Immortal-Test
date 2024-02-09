@@ -5,12 +5,14 @@ namespace Immortal.App
     public class GameFactory : IFactory
     {
         IUnit _adam;
+        IUnit _bruce;
         ITurnManager _turnManager;
         
         public GameFactory()
         {
             _adam = MakeAdam();
-
+            _bruce = MakeBruce();
+            
             _turnManager = MakeTurnManager();
             BuildTurnManager();
         }
@@ -23,6 +25,7 @@ namespace Immortal.App
         void BuildTurnManager()
         {
             _turnManager.AddUnit(_adam);
+            _turnManager.AddUnit(_bruce);
         }
         
         ITurnManager MakeTurnManager()
@@ -39,6 +42,15 @@ namespace Immortal.App
         {
             return new Unit("Adam", 10);
         }
+
+        IUnit GetBruce()
+        {
+            return _adam;
+        }
+
+        IUnit MakeBruce()
+        {
+            return new Unit("Bruce", 9);
+        }
     }
 }
-
