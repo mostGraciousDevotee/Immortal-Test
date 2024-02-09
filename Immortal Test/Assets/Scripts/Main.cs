@@ -8,17 +8,21 @@ namespace Immortal.Main
 {
     public class Main : MonoBehaviour
     {
-        IGame _game;
         [SerializeField] MainPanel _mainPanel;
         SceneLoader _sceneLoader;
+        
+        IGame _game;
+        GameFactory _mainFactory;
         
         void Awake()
         {
             DontDestroyOnLoad(this);
             
             _sceneLoader = GetComponent<SceneLoader>();
+
+            _mainFactory = new GameFactory();
+            _game = new Game(_sceneLoader, _mainFactory);
             
-            _game = new Game(_sceneLoader);
             _mainPanel.NewButtonPressed += NewGame;
             _mainPanel.QuitButtonPressed += Quit;
         }
