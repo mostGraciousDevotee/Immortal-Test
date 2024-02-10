@@ -9,26 +9,32 @@ namespace Immortal.Test
         
         void Start()
         {
-            var unitPropertyTest = new UnitPropertyTest();
-            var unitReadyTest = new UnitReadyTest();
-            // var gameTest = new LoadNewGameTest();
-            var TurnManagerEndTest = new TurnManagerEndTest();
+            AddTest(new UnitPropertyTest());
+            AddTest(new UnitReadyTest());
 
-            _tests.Add(unitPropertyTest);
-            _tests.Add(unitReadyTest);
+            AddTest(new TurnManagerEndTest());
+
+            AddTest(new CellTest());
+            AddTest(new CellAddRemoveUnitTest());
+
+            // var gameTest = new LoadNewGameTest();
             // _tests.Add(gameTest);
-            _tests.Add(TurnManagerEndTest);
 
             foreach(BaseTest test in _tests)
             {
                 if (test.Test() != true)
                 {
-                    Debug.LogError("Test run failed!");
+                    Debug.LogError(test.ToString() + " run failed!");
                     return;
                 }
             }
 
             Debug.Log("All test passed! Congratulations Faikar!");
+        }
+
+        void AddTest(BaseTest test)
+        {
+            _tests.Add(test);
         }
     }
 }   

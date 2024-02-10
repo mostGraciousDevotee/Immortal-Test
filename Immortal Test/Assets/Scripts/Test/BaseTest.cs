@@ -6,7 +6,7 @@ namespace Immortal.Test
 
         protected string ErrorMessage
         {
-            get => this.ToString() + " failed";
+            get => this.ToString() + " assertion failed";
         }
     }
 }
