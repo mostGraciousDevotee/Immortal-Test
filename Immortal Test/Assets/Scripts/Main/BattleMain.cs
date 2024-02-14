@@ -1,16 +1,20 @@
 using Immortal.App;
 using UnityEngine;
 
-public class BattleMain : MonoBehaviour
+namespace Immortal.Main
 {
-    IGame _game;
-    GameFactory _mainFactory;
-
-    void Awake()
+    public class BattleMain : MonoBehaviour
     {
-        // TODO: When Factory become so big cache it in GameManager
-        _mainFactory = new GameFactory();
-        _game = new Game(_mainFactory);
-        _game.Run();
+        IGame _game;
+        GameFactory _mainFactory;
+
+        void Awake()
+        {
+            // TODO: When Factory become so big cache it in GameManager
+            _mainFactory = new GameFactory();
+            _game = new Game(_mainFactory);
+            _game.Run();
+        }
     }
 }
+

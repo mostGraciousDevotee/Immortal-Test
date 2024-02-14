@@ -4,7 +4,7 @@ namespace Immortal.App
     {
         ITurnManager _turnManager;
 
-        public EndTurn(TurnManager turnManager)
+        public EndTurn(ITurnManager turnManager)
         {
             _turnManager = turnManager;
         }

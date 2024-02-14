@@ -4,7 +4,7 @@ using Immortal.App;
 
 namespace Immortal.Infra.UI
 {
-    public class UIButton : IButton
+    public class UIButton : MonoBehaviour, IButton
     {
         [SerializeField] Button _button;
         ICommand _command;

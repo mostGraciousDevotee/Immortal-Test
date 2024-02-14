@@ -9,6 +9,11 @@ namespace Immortal.App
         void LoadSavedGame();
     }
 
+    public interface IUIFactory
+    {
+        IButton EndTurnButton { get; }
+    }
+    
     public interface IButton
     {
         ICommand Command {get; set;}

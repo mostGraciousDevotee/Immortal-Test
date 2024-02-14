@@ -12,7 +12,7 @@ namespace Immortal.Test
             AddTest(new UnitPropertyTest());
             AddTest(new UnitReadyTest());
 
-            AddTest(new TurnManagerEndTest());
+            AddTest(new EndTurnTest());
 
             AddTest(new CellTest());
             AddTest(new CellAddRemoveUnitTest());

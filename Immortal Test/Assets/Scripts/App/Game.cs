@@ -1,6 +1,3 @@
-using System;
-using Immortal.Entities;
-
 namespace Immortal.App
 {
     public class Game : IGame
