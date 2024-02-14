@@ -41,7 +41,7 @@ namespace Immortal.App
             ProcessUnitTurn();
         }
 
-        public void Endturn()
+        public void EndTurn()
         {
             _currentUnit.EndTurn();
             ProcessUnitTurn();
@@ -123,8 +123,9 @@ namespace Immortal.App
 
     public interface ITurnManager : IDisposable
     {
-        public event Action<IUnit> UnitActive;
-        public void AddUnit(IUnit unit);
-        public void Start();
+        event Action<IUnit> UnitActive;
+        void AddUnit(IUnit unit);
+        void Start();
+        void EndTurn();
     }
 }
