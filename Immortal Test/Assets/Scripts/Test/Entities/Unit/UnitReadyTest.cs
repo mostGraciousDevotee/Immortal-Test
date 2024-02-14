@@ -21,22 +21,22 @@ namespace Immortal.Test
             bool counterAt20Ticks = false;
 
             int maxTick = 20;
-            for (int t = 0; t < maxTick; t++)
+            for (int tick = 0; tick < maxTick; tick++)
             {
                 unit.UpdateReadiness();
-                if (t == 4)
+                if (tick == 4)
                 {
                     counterAt5Ticks = Assert.AreEqual<int>(0, _eventCounter, this.ErrorMessage);
                 }
-                else if (t == 9)
+                else if (tick == 9)
                 {
                     counterAt10Ticks = Assert.AreEqual<int>(1, _eventCounter, this.ErrorMessage);
                 }
-                else if (t == 14)
+                else if (tick == 14)
                 {
                     counterAt15Ticks = Assert.AreEqual<int>(1, _eventCounter, this.ErrorMessage);
                 }
-                else if (t == 19)
+                else if (tick == 19)
                 {
                     counterAt20Ticks = Assert.AreEqual<int>(2, _eventCounter, this.ErrorMessage);
                 }
