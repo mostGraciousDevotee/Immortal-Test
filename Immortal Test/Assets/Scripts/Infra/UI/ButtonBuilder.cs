@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Immortal.Infra.UI
 {
-    public class UIFactory : MonoBehaviour, IUIFactory
+    public class ButtonBuilder : MonoBehaviour, IButtonBuilder
     {
         [SerializeField] UIButton _endTurnButton;
         IGameFactory _gameFactory;

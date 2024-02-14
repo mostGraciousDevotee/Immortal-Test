@@ -1,20 +1,45 @@
+using System.Collections.Generic;
+using Immortal.Entities;
+
 namespace Immortal.App
 {
     public class Game : IGame
     {   
         IGameFactory _factory;
+        ITurnManager _turnManager;
 
-        public Game(IGameFactory factory)
+        IMarkerHandler _markerHandler;
+        IUnitViews _unitViews;
+        Dictionary<IUnit, IUnitView> _unitViewDict = new Dictionary<IUnit, IUnitView>();
+
+        public Game(IGameFactory factory, IMarker marker, IUnitViews unitViews)
         {
             _factory = factory;
+            _turnManager = _factory.TurnManager;
+            _unitViews = unitViews;
+            _markerHandler = new MarkerHandler(marker, _unitViewDict);
+
+            BuildTurnManager();            
+            LinkUnitViews();
+        }
+
+        void LinkUnitViews()
+        {
+            _unitViewDict.Add(_factory.Adam, _unitViews.Adam);
+            _unitViewDict.Add(_factory.Bruce, _unitViews.Bruce);
+        }
+
+        void BuildTurnManager()
+        {
+            _turnManager.AddUnit(_factory.Adam);
+            _turnManager.AddUnit(_factory.Bruce);
+
+            _turnManager.UnitActive += _markerHandler.Mark;
         }
         
         public void Run()
         {
-            var turnManager = _factory.TurnManager;
-            turnManager.AddUnit(_factory.Adam);
-            turnManager.AddUnit(_factory.Bruce);
-            turnManager.Start();
+            _turnManager.Start();
         }
 
         public void Load()
@@ -26,5 +51,15 @@ namespace Immortal.App
     public interface IGame
     {
         void Run();
+    }
+
+    public interface IUnitViews
+    {
+        IUnitView Adam {get; }
+        IUnitView Bruce {get; }
+    }
+    public interface IUnitView
+    {
+
     }
 }

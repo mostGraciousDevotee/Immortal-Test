@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 namespace Immortal.UI
 {
+    // TODO : Refactor this to ButtonUI
     public class MainPanel : MonoBehaviour
     {
         [SerializeField] Button _newButton;

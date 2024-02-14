@@ -1,4 +1,5 @@
 using System;
+using Immortal.Entities;
 
 namespace Immortal.App
 {
@@ -9,8 +10,9 @@ namespace Immortal.App
         void LoadSavedGame();
     }
 
-    public interface IUIFactory
+    public interface IButtonBuilder
     {
+        void Initialize(IGameFactory turnManager);
         IButton EndTurnButton { get; }
     }
     
@@ -22,5 +24,15 @@ namespace Immortal.App
     public interface ICommand
     {
         void Execute();
+    }
+
+    public interface IMarkerHandler
+    {
+        void Mark(IUnit unit);
+    }
+
+    public interface IMarker
+    {
+        void Mark(IUnitView unitView);
     }
 }

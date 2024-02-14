@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Immortal.Main
 {
+    // TODO : Create IMain for testing
     public class Main : MonoBehaviour
     {
         [SerializeField] MainPanel _mainPanel;
