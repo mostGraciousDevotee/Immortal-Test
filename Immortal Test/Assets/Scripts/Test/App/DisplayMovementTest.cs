@@ -1,35 +1,31 @@
-
 using Immortal.App;
-using Immortal.Factory;
+using Immortal.Entities;
 
 namespace Immortal.Test
 {
-    public abstract class ActionCommandTest : BaseTest
+    public class DisplayMovementTest : ActionCommandTest
     {
-        protected IGameFactory _factory;
-        protected ITurnManager _turnManager;
-        protected ICommand _command;
+        IUnit _adam;
         
-        public ActionCommandTest()
+        protected override void GetUnit()
         {
-            _factory = new GameFactory();
+            _adam = _factory.MakeAdam();
         }
         
-        public override bool Test()
+        protected override void BuildTurnManager()
         {
-            GetUnit();
-            _turnManager = new TurnManager();
-            BuildTurnManager();
-            GetCommand();
-
-            _turnManager.Start();
-            
-            return Validate();
+            _turnManager.AddUnit(_adam);
         }
 
-        protected abstract void GetCommand();
-        protected abstract void GetUnit();
-        protected abstract void BuildTurnManager();
-        protected abstract bool Validate();
+        protected override void GetCommand()
+        {
+            _command = new DisplayMovement(_turnManager);
+        }
+
+        protected override bool Validate()
+        {
+            return false;
+        }
     }
 }
+

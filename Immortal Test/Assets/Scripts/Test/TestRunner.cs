@@ -15,7 +15,10 @@ namespace Immortal.Test
             AddTest(new UnitPropertyTest());
             AddTest(new UnitReadyTest());
 
+            AddTest(new MoveablePropertyTest());
+
             AddTest(new EndTurnTest());
+            AddTest(new DisplayMovementTest());
 
             AddTest(new CellTest());
             AddTest(new CellAddRemoveUnitTest());

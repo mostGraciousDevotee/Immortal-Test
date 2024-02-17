@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Immortal.Entities
 {
@@ -15,6 +16,8 @@ namespace Immortal.Entities
             _name = name;
             _speed = speed;
         }
+
+        Dictionary<Type, IComponent> _components = new Dictionary<Type, IComponent>();
 
         public event Action<IUnit> UnitReady;
 
@@ -36,6 +39,23 @@ namespace Immortal.Entities
         {
             
         }
+
+        public void AddComponent<T>(T component) where T : IComponent
+        {
+            _components[typeof(T)] = component;
+        }
+
+        public T GetComponent<T>() where T : IComponent
+        {
+            if (_components.TryGetValue(typeof(T), out IComponent component))
+            {
+                return (T)component;
+            }
+            else
+            {
+                return default(T);
+            }
+        }
     }
 
     public interface IUnit
@@ -45,5 +65,7 @@ namespace Immortal.Entities
         int Speed { get; }
         void UpdateReadiness();
         void EndTurn();
+        void AddComponent<T>(T component) where T : IComponent;
+        T GetComponent<T>() where T : IComponent;
     }
 }

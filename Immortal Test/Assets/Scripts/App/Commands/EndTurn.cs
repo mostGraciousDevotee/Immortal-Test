@@ -1,15 +1,11 @@
 namespace Immortal.App
 {
-    public class EndTurn : ICommand
+    public class EndTurn : ActionCommand
     {
-        ITurnManager _turnManager;
-
-        public EndTurn(ITurnManager turnManager)
-        {
-            _turnManager = turnManager;
-        }
+        public EndTurn(ITurnManager turnManager) : base(turnManager)
+        { }
         
-        public void Execute()
+        public override void Execute()
         {
             _turnManager.EndTurn();
         }
