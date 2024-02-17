@@ -17,17 +17,17 @@ namespace Immortal.Factory
             _turnManager = MakeTurnManager();
         }
 
-        IUnit MakeAdam()
+        public IUnit MakeAdam()
         {
             return new Unit("Adam", 10);
         }
 
-        IUnit MakeBruce()
+        public IUnit MakeBruce()
         {
             return new Unit("Bruce", 9);
         }
 
-        ITurnManager MakeTurnManager()
+        public ITurnManager MakeTurnManager()
         {
             return new TurnManager();
         }

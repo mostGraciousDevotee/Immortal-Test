@@ -7,7 +7,7 @@ namespace Immortal.Main
 {
     public class BattleMain : MonoBehaviour
     {
-        IGameFactory _gameFactory;
+        IRepository _repository;
         IButtonBuilder _buttonBuilder;
         UnitPresenters _unitPresenters;
         [SerializeField] Marker _marker;
@@ -23,19 +23,20 @@ namespace Immortal.Main
         void SetUpFactory()
         {
             // TODO: When Factory become so big cache it in GameManager
-            _gameFactory = new GameFactory();
+            var gameFactory = new GameFactory();
+            _repository = new Repository(gameFactory);
             _unitPresenters = GetComponent<UnitPresenters>();
             _buttonBuilder = GetComponent<ButtonBuilder>();
         }
 
         private void SetUpGame()
         {
-            _game = new Game(_gameFactory, _marker, _unitPresenters);
+            _game = new Game(_repository, _marker, _unitPresenters);
         }
 
         void SetUpButtons()
         {
-            _buttonBuilder.Initialize(_gameFactory);
+            _buttonBuilder.Initialize(_repository);
         }
 
         void Start()

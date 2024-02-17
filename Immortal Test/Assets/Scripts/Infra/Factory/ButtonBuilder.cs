@@ -7,17 +7,17 @@ namespace Immortal.Factory
     public class ButtonBuilder : MonoBehaviour, IButtonBuilder
     {
         [SerializeField] ButtonHandler _endTurnButtonHandler;
-        IGameFactory _gameFactory;
+        IRepository _repository;
 
-        public void Initialize(IGameFactory gameFactory)
+        public void Initialize(IRepository repository)
         {
-            _gameFactory = gameFactory;
+            _repository = repository;
             BuildEndTurnButton();
         }
 
         void BuildEndTurnButton()
         {
-            var endTurn = new EndTurn(_gameFactory.TurnManager);
+            var endTurn = new EndTurn(_repository.TurnManager);
             _endTurnButtonHandler.Command = endTurn;
         }
     }

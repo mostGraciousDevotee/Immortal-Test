@@ -1,23 +1,24 @@
 
 using Immortal.App;
+using Immortal.Factory;
 
 namespace Immortal.Test
 {
     public abstract class ActionCommandTest : BaseTest
     {
-        protected IGameFactory _gameFactory;
+        protected IGameFactory _factory;
         protected ITurnManager _turnManager;
         protected ICommand _command;
         
-        public ActionCommandTest(IGameFactory gameFactory)
+        public ActionCommandTest()
         {
-            _gameFactory = gameFactory;
+            _factory = new GameFactory();
         }
         
         public override bool Test()
         {
             GetUnit();
-            _turnManager = _gameFactory.TurnManager;
+            _turnManager = new TurnManager();
             BuildTurnManager();
             GetCommand();
 

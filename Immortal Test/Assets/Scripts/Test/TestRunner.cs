@@ -15,7 +15,7 @@ namespace Immortal.Test
             AddTest(new UnitPropertyTest());
             AddTest(new UnitReadyTest());
 
-            AddTest(new EndTurnTest(gameFactory));
+            AddTest(new EndTurnTest());
 
             AddTest(new CellTest());
             AddTest(new CellAddRemoveUnitTest());

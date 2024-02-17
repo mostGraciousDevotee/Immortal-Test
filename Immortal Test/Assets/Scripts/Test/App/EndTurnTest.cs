@@ -1,6 +1,5 @@
 using Immortal.App;
 using Immortal.Entities;
-using Immortal.Factory;
 
 namespace Immortal.Test
 {
@@ -10,14 +9,10 @@ namespace Immortal.Test
         IUnit _bruce;
         IUnit _resultUnit;
 
-        public EndTurnTest(IGameFactory gameFactory) : base(gameFactory)
-        {
-        }
-
         protected override void GetUnit()
         {
-            _adam = _gameFactory.Adam;
-            _bruce = _gameFactory.Bruce;
+            _adam = _factory.MakeAdam();
+            _bruce = _factory.MakeBruce();
         }
         protected override void BuildTurnManager()
         {

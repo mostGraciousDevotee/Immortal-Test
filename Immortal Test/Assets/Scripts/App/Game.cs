@@ -5,19 +5,19 @@ namespace Immortal.App
 {
     public class Game : IGame
     {   
-        IGameFactory _factory;
+        IRepository _repository;
         ITurnManager _turnManager;
 
         IMarkerHandler _markerHandler;
-        IUnitPresenters _unitViews;
-        Dictionary<IUnit, IUnitPresenter> _unitViewDict = new Dictionary<IUnit, IUnitPresenter>();
+        IUnitPresenters _unitPresenters;
+        Dictionary<IUnit, IUnitPresenter> _unitPresenterDict = new Dictionary<IUnit, IUnitPresenter>();
 
-        public Game(IGameFactory factory, IMarker marker, IUnitPresenters unitViews)
+        public Game(IRepository repository, IMarker marker, IUnitPresenters unitViews)
         {
-            _factory = factory;
-            _turnManager = _factory.TurnManager;
-            _unitViews = unitViews;
-            _markerHandler = new MarkerHandler(marker, _unitViewDict);
+            _repository = repository;
+            _turnManager = _repository.TurnManager;
+            _unitPresenters = unitViews;
+            _markerHandler = new MarkerHandler(marker, _unitPresenterDict);
 
             BuildTurnManager();            
             LinkUnitViews();
@@ -25,14 +25,14 @@ namespace Immortal.App
 
         void LinkUnitViews()
         {
-            _unitViewDict.Add(_factory.Adam, _unitViews.Adam);
-            _unitViewDict.Add(_factory.Bruce, _unitViews.Bruce);
+            _unitPresenterDict.Add(_repository.Adam, _unitPresenters.Adam);
+            _unitPresenterDict.Add(_repository.Bruce, _unitPresenters.Bruce);
         }
 
         void BuildTurnManager()
         {
-            _turnManager.AddUnit(_factory.Adam);
-            _turnManager.AddUnit(_factory.Bruce);
+            _turnManager.AddUnit(_repository.Adam);
+            _turnManager.AddUnit(_repository.Bruce);
 
             _turnManager.UnitActive += _markerHandler.Mark;
         }
