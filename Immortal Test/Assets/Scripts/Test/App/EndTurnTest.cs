@@ -4,35 +4,44 @@ using Immortal.Factory;
 
 namespace Immortal.Test
 {
-    public class EndTurnTest : BaseTest
+    public class EndTurnTest : ActionCommandTest
     {
+        IUnit _adam;
+        IUnit _bruce;
         IUnit _resultUnit;
-        
-        public override bool Test()
+
+        public EndTurnTest(IGameFactory gameFactory) : base(gameFactory)
         {
-            var gameFactory = new GameFactory();
-            
-            var turnManager = gameFactory.TurnManager;
-            var endTurn = new EndTurn(turnManager);
+        }
 
-            var adam = gameFactory.Adam;
-            var bruce = gameFactory.Bruce;
+        protected override void GetUnit()
+        {
+            _adam = _gameFactory.Adam;
+            _bruce = _gameFactory.Bruce;
+        }
+        protected override void BuildTurnManager()
+        {
+            _turnManager.AddUnit(_adam);
+            _turnManager.AddUnit(_bruce);
+            _turnManager.UnitActive += OnUnitActive;
+        }
+        protected override void GetCommand()
+        {
+            _command = new EndTurn(_turnManager);
+        }
 
-            turnManager.AddUnit(adam);
-            turnManager.AddUnit(bruce);
-            turnManager.UnitActive += OnUnitActive;
-
-            turnManager.Start();
+        protected override bool Validate()
+        {
             bool firstExpectedUnit =
-                Assert.AreEqualRef<IUnit>(adam, _resultUnit, this.ErrorMessage);
-            endTurn.Execute();
-            
+                Assert.AreEqualRef<IUnit>(_adam, _resultUnit, this.ErrorMessage);
+            _command.Execute();
+
             bool secondExpectedUnit =
-                Assert.AreEqualRef<IUnit>(bruce, _resultUnit, this.ErrorMessage);
-            endTurn.Execute();
+                Assert.AreEqualRef<IUnit>(_bruce, _resultUnit, this.ErrorMessage);
+            _command.Execute();
 
             bool thirdExpectedUnit =
-                Assert.AreEqualRef<IUnit>(adam, _resultUnit, this.ErrorMessage);
+                Assert.AreEqualRef<IUnit>(_adam, _resultUnit, this.ErrorMessage);
 
             return firstExpectedUnit && secondExpectedUnit && thirdExpectedUnit;
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Immortal.Factory;
 using UnityEngine;
 
 namespace Immortal.Test
@@ -9,10 +10,12 @@ namespace Immortal.Test
         
         void Start()
         {
+            var gameFactory = new GameFactory();
+            
             AddTest(new UnitPropertyTest());
             AddTest(new UnitReadyTest());
 
-            AddTest(new EndTurnTest());
+            AddTest(new EndTurnTest(gameFactory));
 
             AddTest(new CellTest());
             AddTest(new CellAddRemoveUnitTest());
