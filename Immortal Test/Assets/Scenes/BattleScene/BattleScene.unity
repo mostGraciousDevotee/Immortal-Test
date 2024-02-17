@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b38797745563c46a5c84632356f06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endTurnButton: {fileID: 1547707790}
+  _endTurnButtonHandler: {fileID: 1547707790}
 --- !u!114 &678818865
 MonoBehaviour:
   m_ObjectHideFlags: 0

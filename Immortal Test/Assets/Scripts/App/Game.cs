@@ -9,10 +9,10 @@ namespace Immortal.App
         ITurnManager _turnManager;
 
         IMarkerHandler _markerHandler;
-        IUnitViews _unitViews;
-        Dictionary<IUnit, IUnitView> _unitViewDict = new Dictionary<IUnit, IUnitView>();
+        IUnitPresenters _unitViews;
+        Dictionary<IUnit, IUnitPresenter> _unitViewDict = new Dictionary<IUnit, IUnitPresenter>();
 
-        public Game(IGameFactory factory, IMarker marker, IUnitViews unitViews)
+        public Game(IGameFactory factory, IMarker marker, IUnitPresenters unitViews)
         {
             _factory = factory;
             _turnManager = _factory.TurnManager;
@@ -51,15 +51,5 @@ namespace Immortal.App
     public interface IGame
     {
         void Run();
-    }
-
-    public interface IUnitViews
-    {
-        IUnitView Adam {get; }
-        IUnitView Bruce {get; }
-    }
-    public interface IUnitView
-    {
-
     }
 }

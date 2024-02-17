@@ -1,11 +1,12 @@
-using Immortal.App;
 using UnityEngine;
+using Immortal.App;
+using Immortal.UI;
 
-namespace Immortal.Infra.UI
+namespace Immortal.Factory
 {
     public class ButtonBuilder : MonoBehaviour, IButtonBuilder
     {
-        [SerializeField] UIButton _endTurnButton;
+        [SerializeField] ButtonHandler _endTurnButtonHandler;
         IGameFactory _gameFactory;
 
         public void Initialize(IGameFactory gameFactory)
@@ -17,9 +18,7 @@ namespace Immortal.Infra.UI
         void BuildEndTurnButton()
         {
             var endTurn = new EndTurn(_gameFactory.TurnManager);
-            _endTurnButton.Command = endTurn;
+            _endTurnButtonHandler.Command = endTurn;
         }
-
-        public IButton EndTurnButton => _endTurnButton;
     }
 }

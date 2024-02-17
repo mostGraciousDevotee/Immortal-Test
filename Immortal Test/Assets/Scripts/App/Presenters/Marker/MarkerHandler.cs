@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Immortal.App;
 using Immortal.Entities;
 
 namespace Immortal.App
@@ -7,9 +6,9 @@ namespace Immortal.App
     public class MarkerHandler : IMarkerHandler
     {
         IMarker _marker;
-        Dictionary<IUnit, IUnitView> _unitViewDict = new Dictionary<IUnit, IUnitView>();
+        Dictionary<IUnit, IUnitPresenter> _unitViewDict = new Dictionary<IUnit, IUnitPresenter>();
 
-        public MarkerHandler(IMarker marker, Dictionary<IUnit, IUnitView> unitViewDict)
+        public MarkerHandler(IMarker marker, Dictionary<IUnit, IUnitPresenter> unitViewDict)
         {
             _marker = marker;
             _unitViewDict = unitViewDict;

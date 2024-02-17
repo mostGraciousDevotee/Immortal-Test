@@ -1,7 +1,7 @@
 using Immortal.App;
 using UnityEngine;
 
-namespace Immortal.Infra.View
+namespace Immortal.View
 {
     public class Marker : MonoBehaviour, IMarker
     {
@@ -12,9 +12,9 @@ namespace Immortal.Infra.View
             gameObject.SetActive(false);
         }
 
-        public void Mark(IUnitView unitView)
+        public void Mark(IUnitPresenter unitView)
         {
-            var markable = unitView as UnitView;
+            var markable = unitView as UnitPresenter;
             
             gameObject.SetActive(true);
             transform.SetParent(markable.Transform, false);

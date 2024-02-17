@@ -1,5 +1,6 @@
 using Immortal.App;
 using Immortal.Entities;
+using Immortal.Factory;
 
 namespace Immortal.Test
 {

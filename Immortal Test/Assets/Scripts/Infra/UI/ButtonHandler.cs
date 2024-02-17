@@ -2,15 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using Immortal.App;
 
-namespace Immortal.Infra.UI
+namespace Immortal.UI
 {
-    public class UIButton : MonoBehaviour, IButton
+    public class ButtonHandler : MonoBehaviour, ICommandInvoker
     {
-        [SerializeField] Button _button;
+        Button _button;
         ICommand _command;
 
         void Awake()
         {
+            _button = GetComponent<Button>();
             _button.onClick.AddListener(OnButtonClicked);
         }
 
@@ -26,7 +27,6 @@ namespace Immortal.Infra.UI
 
         public ICommand Command
         {
-            get => _command;
             set => _command = value;
         }
     }

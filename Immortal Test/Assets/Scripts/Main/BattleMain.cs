@@ -1,30 +1,34 @@
-using Immortal.App;
-using Immortal.Infra.UI;
-using Immortal.Infra.View;
 using UnityEngine;
+using Immortal.App;
+using Immortal.UI;
+using Immortal.View;
+using Immortal.Factory;
 
 namespace Immortal.Main
 {
     public class BattleMain : MonoBehaviour
     {
-        IGame _game;
-        IGameFactory _mainFactory;
-        IButtonBuilder _uiFactory;
+        IGameFactory _gameFactory;
+        IButtonBuilder _buttonBuilder;
         [SerializeField] Marker _marker;
+        IGame _game;
 
         void Awake()
         {   
             // TODO: When Factory become so big cache it in GameManager
-            _mainFactory = new GameFactory();
+            _gameFactory = new GameFactory();
 
-            _uiFactory = GetComponent<ButtonBuilder>();
-            _uiFactory.Initialize(_mainFactory);
+            _buttonBuilder = GetComponent<ButtonBuilder>();
+            _buttonBuilder.Initialize(_gameFactory);
 
-            var unitViews = GetComponent<UnitViews>();
+            var unitPresenters = GetComponent<UnitPresenters>();
 
-            _game = new Game(_mainFactory, _marker, unitViews);
+            _game = new Game(_gameFactory, _marker, unitPresenters);
+        }
+
+        void Start()
+        {
             _game.Run();
         }
     }
 }
-
