@@ -14,6 +14,7 @@ namespace Immortal.Entities
         }
 
         public Vector2Int Position => _position;
+        public bool IsOccupied => _isOccupied;
 
         public void AddUnit(IUnit unit)
         {
@@ -39,6 +40,7 @@ namespace Immortal.Entities
     public interface ICell
     {
         Vector2Int Position{get; }
+        bool IsOccupied{get; }
         
         void AddUnit(IUnit unit);
         void RemoveUnit();

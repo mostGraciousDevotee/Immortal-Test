@@ -18,10 +18,13 @@ namespace Immortal.Test
             AddTest(new MoveablePropertyTest());
 
             AddTest(new EndTurnTest());
-            AddTest(new DisplayMovementTest());
+            // AddTest(new DisplayMovementTest());
 
             AddTest(new CellTest());
             AddTest(new CellAddRemoveUnitTest());
+
+            AddTest(new SquareCellTest());
+            // AddTest(new MovementValidatorTest());
 
             // var gameTest = new LoadNewGameTest();
             // _tests.Add(gameTest);

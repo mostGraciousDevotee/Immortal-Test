@@ -4,28 +4,28 @@ namespace Immortal.Entities
 {
     public class Moveable : Component, IMoveable
     {
-        int _moveRange;
-        int _movePoints;
+        int _maxMovePoints;
+        int _currentMovePoints;
 
         public event Action<IMoveable> MovePointChanged;
 
         public Moveable(int moveRange)
         {
-            _moveRange = moveRange;
-            _movePoints = moveRange;
+            _maxMovePoints = moveRange;
+            _currentMovePoints = moveRange;
         }
 
-        public int MoveRange => _moveRange;
-        public int MovePoints
+        public int MaxMovePoints => _maxMovePoints;
+        public int CurrentMovePoints
         {
             get
             {
-                return _movePoints;
+                return _currentMovePoints;
             }
             set
             {
-                _movePoints = value;
-                _movePoints = _movePoints > 0 ? _movePoints : 0;
+                _currentMovePoints = value;
+                _currentMovePoints = _currentMovePoints > 0 ? _currentMovePoints : 0;
                 MovePointChanged?.Invoke(this);
             }
         }
@@ -34,7 +34,7 @@ namespace Immortal.Entities
     public interface IMoveable : IComponent
     {
         event Action<IMoveable> MovePointChanged;
-        int MoveRange { get; }
-        int MovePoints { get; set; }
+        int MaxMovePoints { get; }
+        int CurrentMovePoints { get; set; }
     }
 }

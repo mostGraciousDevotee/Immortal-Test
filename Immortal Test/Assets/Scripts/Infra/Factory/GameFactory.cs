@@ -31,9 +31,5 @@ namespace Immortal.Factory
         {
             return new TurnManager();
         }
-        
-        public ITurnManager TurnManager => _turnManager;
-        public IUnit Adam => _adam;
-        public IUnit Bruce => _bruce;
     }
 }

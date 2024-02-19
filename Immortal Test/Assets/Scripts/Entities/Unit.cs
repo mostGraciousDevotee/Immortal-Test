@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Immortal.Entities
 {
@@ -10,11 +11,14 @@ namespace Immortal.Entities
         string _name;
         int _speed;
         int _readiness;
+
+        Vector2Int _position;
         
         public Unit(string name, int speed)
         {
             _name = name;
             _speed = speed;
+            _position = Vector2Int.zero;
         }
 
         Dictionary<Type, IComponent> _components = new Dictionary<Type, IComponent>();
@@ -23,6 +27,11 @@ namespace Immortal.Entities
 
         public string Name => _name;
         public int Speed => _speed;
+        public Vector2Int Position
+        {
+            get => _position;
+            set => _position = value;
+        }
 
         public void UpdateReadiness()
         {
@@ -61,8 +70,12 @@ namespace Immortal.Entities
     public interface IUnit
     {
         event Action<IUnit> UnitReady;
+
         string Name { get; }
         int Speed { get; }
+
+        Vector2Int Position { get; set; }
+
         void UpdateReadiness();
         void EndTurn();
         void AddComponent<T>(T component) where T : IComponent;

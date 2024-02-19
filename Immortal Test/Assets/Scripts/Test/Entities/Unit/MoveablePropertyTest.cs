@@ -24,7 +24,7 @@ namespace Immortal.Test
                 return addedMoveable;
             }
 
-            bool addedMoveRange = Assert.AreEqual<int>(moveRange, resultMoveable.MoveRange, this.ErrorMessage);
+            bool addedMoveRange = Assert.AreEqual<int>(moveRange, resultMoveable.MaxMovePoints, this.ErrorMessage);
 
             return addedMoveRange;
         }
