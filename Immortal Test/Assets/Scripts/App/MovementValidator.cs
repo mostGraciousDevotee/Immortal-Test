@@ -27,7 +27,7 @@ namespace Immortal.App
             var traversableCells = new List<Vector2Int>();
 
             EnqueueCurrentNeighboursOf(_currentPos);
-            AddToVisitedCells(_currentPos);
+            _visitedCells.Add(_currentPos);
 
             while (currentMoveRange > 0)
             {
@@ -77,11 +77,6 @@ namespace Immortal.App
             return neighbours;
         }
 
-        void AddToVisitedCells(Vector2Int currentPos)
-        {
-            _visitedCells.Add(currentPos);
-        }
-
         void FindTraversableCells(List<Vector2Int> traversableCells)
         {
             while (_currentNeighboursQueue.Count > 0)
@@ -92,24 +87,40 @@ namespace Immortal.App
                 }
 
                 _currentPos = _currentNeighboursQueue.Dequeue();
-                // EnqueueNextNeighbours(_currentPos);
+                EnqueueNextNeighbours(_currentPos);
 
-                // bool isInsideCells = _squareCells.IsInsideCells(_currentPos);
-                // bool isCellOccupied = _squareCells.IsCellOccupied(_currentPos);
+                bool isInsideCells = _squareCells.IsInside(_currentPos);
+                bool isCellOccupied = _squareCells.IsOccupied(_currentPos);
                 bool isVisited = _visitedCells.Contains(_currentPos);
 
-                // if (isInsideCells && !isCellOccupied && !isVisited)
-                // {
-                //     traversableCells.Add(_currentPos);
-                // }
+                if (isInsideCells && !isCellOccupied && !isVisited)
+                {
+                     traversableCells.Add(_currentPos);
+                }
 
                 _visitedCells.Add(_currentPos);
             }
         }
 
+        void EnqueueNextNeighbours(Vector2Int currentPos)
+        {
+            _currentNeighbours = GenerateNeigbours(currentPos);
+
+            foreach (Vector2Int cellVector in _currentNeighbours)
+            {
+                if (!_visitedCells.Contains(cellVector) && !_nextNeighboursQueue.Contains(cellVector))
+                {
+                    _nextNeighboursQueue.Enqueue(cellVector);
+                }
+            }
+        }
+
         void CopyNextQueueToCurrent()
         {
-            
+            foreach (Vector2Int cellVector in _nextNeighboursQueue)
+            {
+                _currentNeighboursQueue.Enqueue(cellVector);
+            }
         }
     }
 

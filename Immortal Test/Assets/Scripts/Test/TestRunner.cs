@@ -24,7 +24,7 @@ namespace Immortal.Test
             AddTest(new CellAddRemoveUnitTest());
 
             AddTest(new SquareCellTest());
-            // AddTest(new MovementValidatorTest());
+            AddTest(new MovementValidatorTest());
 
             // var gameTest = new LoadNewGameTest();
             // _tests.Add(gameTest);

@@ -22,6 +22,9 @@ namespace Immortal.Test
             int squareDim = 16;
             int cellSize = 2;
             var squareCells = new SquareCells(squareDim, squareDim, cellSize);
+            squareCells.AddUnit(adam);
+            squareCells.AddUnit(bruce);
+
             var movementValidator = new MovementValidator(squareCells);
             var validCells = movementValidator.GetTraversableCells
             (
@@ -57,8 +60,28 @@ namespace Immortal.Test
             {
                 Debug.Log("Valid cells contain outsideRange cell");
             }
+            if (containOutsideRangeCell)
+            {
+                return false;
+            }
 
-            return containOutsideRangeCell;
+            var notContainAdamPos = Assert.AreEqual<bool>
+            (
+                false,
+                validCells.Contains(adam.Position),
+                ErrorMessage + " at not containing Adam pos!"
+            );
+
+            var notContainBrucePos = Assert.AreEqual<bool>
+            (
+                false,
+                validCells.Contains(bruce.Position),
+                ErrorMessage + " at not containing Bruce pos"
+            );
+
+            return
+                notContainAdamPos &&
+                notContainBrucePos;
         }
     }
 }

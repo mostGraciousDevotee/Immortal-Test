@@ -19,12 +19,30 @@ namespace Immortal.Factory
 
         public IUnit MakeAdam()
         {
-            return new Unit("Adam", 10);
+            var name = "Adam";
+            var speed = 10;
+            var maxMovePoints = 2;
+
+            var moveable = new Moveable(maxMovePoints);
+            var adam = new Unit(name, speed);
+
+            adam.AddComponent<IMoveable>(moveable);
+            
+            return adam;
         }
 
         public IUnit MakeBruce()
         {
-            return new Unit("Bruce", 9);
+            var name = "Bruce";
+            var speed = 9;
+            var maxMovePoints = 4;
+
+            var moveable = new Moveable(maxMovePoints);
+            var bruce = new Unit(name, speed);
+
+            bruce.AddComponent<IMoveable>(moveable);
+
+            return bruce;
         }
 
         public ITurnManager MakeTurnManager()
