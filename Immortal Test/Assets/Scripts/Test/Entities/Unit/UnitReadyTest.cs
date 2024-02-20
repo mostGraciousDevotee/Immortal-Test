@@ -44,6 +44,8 @@ namespace Immortal.Test
 
             bool unitIsEqual = Assert.AreEqualRef<IUnit>(unit, _unitResult, this.ErrorMessage);
 
+            unit.UnitReady -= UnitReadyHandler;
+
             return
                 unitIsEqual &&
                 counterAt5Ticks &&

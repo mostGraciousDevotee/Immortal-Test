@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Immortal.Entities;
 using UnityEngine;
+using Immortal.Entities;
 
 namespace Immortal.App
 {
@@ -31,8 +31,20 @@ namespace Immortal.App
 
         void LinkUnitViews()
         {
-            _unitPresenterDict.Add(_repository.Adam, _unitPresenters.Adam);
-            _unitPresenterDict.Add(_repository.Bruce, _unitPresenters.Bruce);
+            var adam = _repository.Adam;
+            var bruce = _repository.Bruce;
+
+            var adamPresenter = _unitPresenters.Adam;
+            var brucePresenter = _unitPresenters.Bruce;
+
+            adamPresenter.Init(_squareCells.CellSize);
+            brucePresenter.Init(_squareCells.CellSize);
+
+            adam.PositionChanged += adamPresenter.SetPosition;
+            bruce.PositionChanged += brucePresenter.SetPosition;
+            
+            _unitPresenterDict.Add(adam, adamPresenter);
+            _unitPresenterDict.Add(bruce, brucePresenter);
         }
 
         void BuildTurnManager()
@@ -45,9 +57,14 @@ namespace Immortal.App
 
         private void PlaceUnits()
         {
-            _squareCells.AddUnit(_repository.Adam);
-            _repository.Bruce.Position = Vector2Int.right;
-            _squareCells.AddUnit(_repository.Bruce);
+            var adam = _repository.Adam;
+            var bruce = _repository.Bruce;
+            
+            adam.Position = new Vector2Int(5, 5);
+            bruce.Position = new Vector2Int(4, 5);
+            
+            _squareCells.AddUnit(adam);
+            _squareCells.AddUnit(bruce);
         }
         
         public void Run()

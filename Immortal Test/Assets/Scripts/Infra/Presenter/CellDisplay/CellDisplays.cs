@@ -5,6 +5,7 @@ using Immortal.Factory;
 
 namespace Immortal.View
 {
+    [RequireComponent(typeof(ICellDisplayBuilder))]
     public class CellDisplays : MonoBehaviour, ICellDisplays
     {
         ICellDisplayBuilder _cellDisplayBuilder;

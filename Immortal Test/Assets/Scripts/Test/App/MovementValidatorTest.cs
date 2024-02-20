@@ -13,6 +13,7 @@ namespace Immortal.Test
 
             var adam = gameFactory.MakeAdam();
             var adamMoveable = adam.GetComponent<IMoveable>();
+            adam.Position = Vector2Int.zero;
 
             var bruce = gameFactory.MakeBruce();
             bruce.Position = Vector2Int.up;
@@ -84,8 +85,6 @@ namespace Immortal.Test
                 validCells.Count,
                 ErrorMessage + " incorrect valid cells count!"
             );
-
-            Debug.Log(validCells.Count);
 
             return
                 notContainAdamPos &&

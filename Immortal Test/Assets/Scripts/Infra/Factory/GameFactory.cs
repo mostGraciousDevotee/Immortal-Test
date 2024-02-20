@@ -1,5 +1,6 @@
 using Immortal.App;
 using Immortal.Entities;
+using UnityEngine;
 
 namespace Immortal.Factory
 {
@@ -8,7 +9,6 @@ namespace Immortal.Factory
         ITurnManager _turnManager;
         IMovementValidator _movementValidator;
         ISquareCells _squareCells;
-
 
         public IUnit MakeAdam()
         {

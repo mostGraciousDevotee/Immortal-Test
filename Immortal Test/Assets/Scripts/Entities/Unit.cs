@@ -24,13 +24,18 @@ namespace Immortal.Entities
         Dictionary<Type, IComponent> _components = new Dictionary<Type, IComponent>();
 
         public event Action<IUnit> UnitReady;
+        public event Action<Vector2Int> PositionChanged;
 
         public string Name => _name;
         public int Speed => _speed;
         public Vector2Int Position
         {
             get => _position;
-            set => _position = value;
+            set
+            {
+                _position = value;
+                PositionChanged?.Invoke(_position);
+            } 
         }
 
         public void UpdateReadiness()
@@ -70,11 +75,12 @@ namespace Immortal.Entities
     public interface IUnit
     {
         event Action<IUnit> UnitReady;
+        event Action<Vector2Int> PositionChanged;
 
-        string Name { get; }
-        int Speed { get; }
+        string Name {get; }
+        int Speed {get; }
 
-        Vector2Int Position { get; set; }
+        Vector2Int Position {get; set;}
 
         void UpdateReadiness();
         void EndTurn();

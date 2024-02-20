@@ -14,6 +14,7 @@ namespace Immortal.Test
             
             AddTest(new UnitPropertyTest());
             AddTest(new UnitReadyTest());
+            AddTest(new UnitPositionChangedTest());
 
             AddTest(new MoveablePropertyTest());
 

@@ -7,7 +7,6 @@ namespace Immortal.Factory
 {
     public class CellDisplayBuilder : MonoBehaviour, ICellDisplayBuilder
     {
-        bool _isInitialized;
         int _cellSize;
 
         public void Init(int cellSize)
