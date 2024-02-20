@@ -1,26 +1,26 @@
 using System;
-using System.Collections.Generic;
-using UnityEngine;
 using Immortal.Entities;
 
 namespace Immortal.App
 {
     public class DisplayMovement : ActionCommand
     {
-        List<Vector2Int> _validPositions = new List<Vector2Int>();
-        ISquareCells _squareCells;
         IMovementValidator _movementValidator;
-        IMoveDisplay _moveDisplay;
+        ICellDisplays _moveDisplays;
+        ICellDisplay _moveDisplayPrefab;
         
         public DisplayMovement
         (
             ITurnManager turnManager,
-            ISquareCells squareCells,
-            IMoveDisplay moveDisplay
+            IMovementValidator movementValidator,
+            ICellDisplays moveDisplay,
+            ICellDisplay cellDisplayPrefab
         ) : base(turnManager)
         {
-            _squareCells = squareCells;
-            _moveDisplay = moveDisplay;
+            _movementValidator = movementValidator;
+
+            _moveDisplays = moveDisplay;
+            _moveDisplayPrefab = cellDisplayPrefab;
         }
 
         public override void Execute()
@@ -36,9 +36,8 @@ namespace Immortal.App
 
             var currentMovePoints = moveable.CurrentMovePoints;
 
-            // TODO: Create Unit Test for Traversable Cells
-            _validPositions = _movementValidator.GetTraversableCells(unitPos, currentMovePoints);
-            _moveDisplay.Show(_validPositions);
+            var validPositions = _movementValidator.GetTraversableCells(unitPos, currentMovePoints);
+            _moveDisplays.Show(_moveDisplayPrefab, validPositions);
         }
     }
 }

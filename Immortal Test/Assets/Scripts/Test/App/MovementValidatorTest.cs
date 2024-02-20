@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Immortal.App;
 using Immortal.Entities;
 using Immortal.Factory;
@@ -79,9 +77,20 @@ namespace Immortal.Test
                 ErrorMessage + " at not containing Bruce pos"
             );
 
+            var expectedCellsCount = 4;
+            var correctCellsCount = Assert.AreEqual<int>
+            (
+                expectedCellsCount,
+                validCells.Count,
+                ErrorMessage + " incorrect valid cells count!"
+            );
+
+            Debug.Log(validCells.Count);
+
             return
                 notContainAdamPos &&
-                notContainBrucePos;
+                notContainBrucePos &&
+                correctCellsCount;
         }
     }
 }

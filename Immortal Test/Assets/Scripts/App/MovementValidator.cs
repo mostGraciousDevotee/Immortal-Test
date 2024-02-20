@@ -64,10 +64,10 @@ namespace Immortal.App
         {
             var neighbours = new List<Vector2Int>();
 
-            Vector2Int forwardNeighbour = Vector2Int.up;
-            Vector2Int leftNeigbour = Vector2Int.left;
-            Vector2Int backNeighbour = Vector2Int.down;
-            Vector2Int rightNeighbour = Vector2Int.right;
+            Vector2Int forwardNeighbour = pos + Vector2Int.up;
+            Vector2Int leftNeigbour = pos + Vector2Int.left;
+            Vector2Int backNeighbour = pos + Vector2Int.down;
+            Vector2Int rightNeighbour = pos + Vector2Int.right;
 
             neighbours.Add(forwardNeighbour);
             neighbours.Add(leftNeigbour);

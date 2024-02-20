@@ -4,18 +4,11 @@ using Immortal.Entities;
 namespace Immortal.Factory
 {
     public class GameFactory : IGameFactory
-    {
-        IUnit _adam;
-        IUnit _bruce;
+    {   
         ITurnManager _turnManager;
-        
-        public GameFactory()
-        {
-            _adam = MakeAdam();
-            _bruce = MakeBruce();
-            
-            _turnManager = MakeTurnManager();
-        }
+        IMovementValidator _movementValidator;
+        ISquareCells _squareCells;
+
 
         public IUnit MakeAdam()
         {
@@ -47,7 +40,35 @@ namespace Immortal.Factory
 
         public ITurnManager MakeTurnManager()
         {
-            return new TurnManager();
+            if (_turnManager == null)
+            {
+                _turnManager = new TurnManager();
+            }
+
+            return _turnManager;
+        }
+
+        public ISquareCells MakeSquareCells()
+        {
+            var squareDim = 16;
+            var cellSize = 2;
+
+            if (_squareCells == null)
+            {
+                _squareCells = new SquareCells(squareDim, squareDim, cellSize);
+            }
+            
+            return _squareCells;
+        }
+
+        public IMovementValidator MakeMovementValidator()
+        {
+            if (_movementValidator == null)
+            {
+                _movementValidator = new MovementValidator(MakeSquareCells());
+            }
+            
+            return _movementValidator;
         }
     }
 }

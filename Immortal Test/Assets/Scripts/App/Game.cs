@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Immortal.Entities;
+using UnityEngine;
 
 namespace Immortal.App
 {
@@ -7,6 +8,7 @@ namespace Immortal.App
     {   
         IRepository _repository;
         ITurnManager _turnManager;
+        ISquareCells _squareCells;
 
         IMarkerHandler _markerHandler;
         IUnitPresenters _unitPresenters;
@@ -16,11 +18,15 @@ namespace Immortal.App
         {
             _repository = repository;
             _turnManager = _repository.TurnManager;
+            _squareCells = _repository.SquareCells;
+
             _unitPresenters = unitViews;
             _markerHandler = new MarkerHandler(marker, _unitPresenterDict);
 
             BuildTurnManager();            
             LinkUnitViews();
+
+            PlaceUnits();
         }
 
         void LinkUnitViews()
@@ -35,6 +41,13 @@ namespace Immortal.App
             _turnManager.AddUnit(_repository.Bruce);
 
             _turnManager.UnitActive += _markerHandler.Mark;
+        }
+
+        private void PlaceUnits()
+        {
+            _squareCells.AddUnit(_repository.Adam);
+            _repository.Bruce.Position = Vector2Int.right;
+            _squareCells.AddUnit(_repository.Bruce);
         }
         
         public void Run()

@@ -61,6 +61,9 @@ namespace Immortal.Entities
         int Width {get; }
         int Length {get; }
         int CellSize {get; }
+
+        void AddUnit(IUnit unit);
+        
         bool IsInside(Vector2Int pos);
         bool IsOccupied(Vector2Int pos);
     }
