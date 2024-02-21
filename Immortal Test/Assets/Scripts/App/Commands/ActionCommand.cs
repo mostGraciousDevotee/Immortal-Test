@@ -8,5 +8,6 @@ namespace Immortal.App
             _turnManager = turnManager;
         }
         public abstract void Execute();
+        public abstract void Undo();
     }
 }

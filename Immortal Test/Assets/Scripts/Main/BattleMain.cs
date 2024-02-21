@@ -2,9 +2,11 @@ using UnityEngine;
 using Immortal.App;
 using Immortal.View;
 using Immortal.Factory;
+using Immortal.UI;
 
 namespace Immortal.Main
 {
+    [RequireComponent(typeof(Mouse))]
     public class BattleMain : MonoBehaviour
     {
         IRepository _repository;
@@ -12,12 +14,16 @@ namespace Immortal.Main
         UnitPresenters _unitPresenters;
         [SerializeField] Marker _marker;
         IGame _game;
+        IMouse _mouse;
 
         void Awake()
         {
             SetUpFactory();
             SetUpGame();
             SetUpButtons();
+
+            _mouse = GetComponent<Mouse>();
+            _mouse.RightMouseButtonDown += HandleRightClick;
         }
 
         void SetUpFactory()
@@ -42,6 +48,11 @@ namespace Immortal.Main
         void Start()
         {
             _game.Run();
+        }
+
+        void HandleRightClick()
+        {
+            _game.Undo();
         }
     }
 }

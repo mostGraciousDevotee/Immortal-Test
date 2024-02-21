@@ -7,6 +7,7 @@ namespace Immortal.App
         ITurnManager _turnManager;
         ISquareCells _squareCells;
         IMovementValidator _movementValidator;
+        ICommandHistory _commandHistory;
 
         IUnit _adam;
         IUnit _bruce;
@@ -16,6 +17,7 @@ namespace Immortal.App
             _turnManager = factory.MakeTurnManager();
             _squareCells = factory.MakeSquareCells();
             _movementValidator = factory.MakeMovementValidator();
+            _commandHistory = factory.MakeCommandHistory();
 
             _adam = factory.MakeAdam();
             _bruce = factory.MakeBruce();
@@ -24,6 +26,7 @@ namespace Immortal.App
         public ITurnManager TurnManager => _turnManager;
         public ISquareCells SquareCells => _squareCells;
         public IMovementValidator MovementValidator => _movementValidator;
+        public ICommandHistory CommandHistory => _commandHistory;
 
         public IUnit Adam => _adam;
         public IUnit Bruce => _bruce;
@@ -34,6 +37,7 @@ namespace Immortal.App
         ITurnManager TurnManager {get; }
         IMovementValidator MovementValidator {get; }
         ISquareCells SquareCells {get; }
+        ICommandHistory CommandHistory {get; }
 
         IUnit Adam {get; }
         IUnit Bruce {get; }

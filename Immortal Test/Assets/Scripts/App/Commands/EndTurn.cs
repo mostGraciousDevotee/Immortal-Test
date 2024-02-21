@@ -9,5 +9,10 @@ namespace Immortal.App
         {
             _turnManager.EndTurn();
         }
+
+        public override void Undo()
+        {
+            
+        }
     }
 }

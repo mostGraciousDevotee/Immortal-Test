@@ -7,6 +7,7 @@ namespace Immortal.Factory
 {
     public class ButtonBuilder : MonoBehaviour, IButtonBuilder
     {
+        [SerializeField] Panel _actionPanel;
         [SerializeField] ButtonHandler _moveButtonHandler;
         [SerializeField] ButtonHandler _endTurnButtonHandler;
 
@@ -38,7 +39,9 @@ namespace Immortal.Factory
                 _repository.TurnManager,
                 _repository.MovementValidator,
                 _cellDisplays,
-                _moveDisplay
+                _moveDisplay,
+                _actionPanel,
+                _repository.CommandHistory
             );
             _moveButtonHandler.Command = displayMove;
         }

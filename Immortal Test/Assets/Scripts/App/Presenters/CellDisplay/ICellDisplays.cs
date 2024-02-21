@@ -6,5 +6,6 @@ namespace Immortal.App
     public interface ICellDisplays
     {
         void Show(ICellDisplay cellDisplayPrefab, List<Vector2Int> validPos);
+        void Hide();
     }
 }

@@ -9,6 +9,7 @@ namespace Immortal.App
         IRepository _repository;
         ITurnManager _turnManager;
         ISquareCells _squareCells;
+        ICommandHistory _commandHistory;
 
         IMarkerHandler _markerHandler;
         IUnitPresenters _unitPresenters;
@@ -19,6 +20,7 @@ namespace Immortal.App
             _repository = repository;
             _turnManager = _repository.TurnManager;
             _squareCells = _repository.SquareCells;
+            _commandHistory = _repository.CommandHistory;
 
             _unitPresenters = unitViews;
             _markerHandler = new MarkerHandler(marker, _unitPresenterDict);
@@ -76,10 +78,16 @@ namespace Immortal.App
         {
 
         }
+
+        public void Undo()
+        {
+            _commandHistory.Undo();
+        }
     }
 
     public interface IGame
     {
         void Run();
+        void Undo();
     }
 }

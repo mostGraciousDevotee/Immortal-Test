@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Immortal.App;
@@ -10,6 +11,7 @@ namespace Immortal.View
     {
         ICellDisplayBuilder _cellDisplayBuilder;
         ICellDisplay _cellDisplayPrefab;
+        List<ICellDisplay> _cellDisplays = new List<ICellDisplay>();
         
         public void Init(int cellSize)
         {
@@ -19,7 +21,23 @@ namespace Immortal.View
 
         public void Show(ICellDisplay cellDisplayPrefab, List<Vector2Int> validPos)
         {
-            _cellDisplayBuilder.Build(cellDisplayPrefab, validPos);
+            _cellDisplays = _cellDisplayBuilder.Build(cellDisplayPrefab, validPos);
+        }
+
+        public void Hide()
+        {
+            if (_cellDisplays[0] as CellDisplay != null)
+            {
+                foreach (ICellDisplay cellDisplay in _cellDisplays)
+                {
+                    var cellDisplayImpl = cellDisplay as CellDisplay;
+                    Destroy(cellDisplayImpl.gameObject);
+                }
+            }
+            else
+            {
+                throw new Exception("Unable to destroy; ICellDisplay casting failed");
+            }
         }
     }
 }

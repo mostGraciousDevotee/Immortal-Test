@@ -4,7 +4,7 @@ using Immortal.View;
 
 namespace Immortal.Factory
 {
-    public class UnitPresenters : MonoBehaviour, App.IUnitPresenters
+    public class UnitPresenters : MonoBehaviour, IUnitPresenters
     {
         [SerializeField] UnitPresenter _adam;
         [SerializeField] UnitPresenter _bruce;
