@@ -7,6 +7,7 @@ namespace Immortal.App
         ITurnManager MakeTurnManager();
         ISquareCells MakeSquareCells();
         ICellValidator MakeMovementValidator();
+        ICellValidator MakeAttackValidator();
         ICommandHistory MakeCommandHistory();
         IUnit MakeAdam();
         IUnit MakeBruce();

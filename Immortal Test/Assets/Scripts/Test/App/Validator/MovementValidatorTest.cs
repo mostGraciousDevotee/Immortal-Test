@@ -1,25 +1,12 @@
-using System.Collections.Generic;
-using Immortal.App;
 using Immortal.Entities;
-using Immortal.Factory;
-using UnityEngine;
 
 namespace Immortal.Test
 {
     public class MovementValidatorTest : CellValidatorTest
-    {
-        int _range;
-        
+    {   
         protected override void GetRange()
         {
             _range = _adam.GetComponent<IMoveable>().CurrentMovePoints;
-        }
-        
-        protected override Vector2Int CreateOutsideRangeCell()
-        {
-            var rangeVector = new Vector2Int(_range, _range);
-
-            return rangeVector + Vector2Int.one;
         }
 
         protected override void GetValidCells()
@@ -30,21 +17,21 @@ namespace Immortal.Test
 
         protected override bool IsValid()
         {
-            var containingAdam = Assert.IsContaining
+            var notContainingAdam = Assert.AreEqual<bool>
             (
-                _validCells,
-                _adam.Position,
+                false,
+                _validCells.Contains(_adam.Position),
                 "Valid cells containing Adam position"
             );
 
-            var containingBruce = Assert.IsContaining
+            var notContainingBruce = Assert.AreEqual<bool>
             (
-                _validCells,
-                _bruce.Position,
+                false,
+                _validCells.Contains(_bruce.Position),
                 "Valid cells containing Bruce position"
             );
 
-            return !containingAdam && !containingBruce;
+            return notContainingAdam && notContainingBruce;
         }
     }
 }

@@ -27,16 +27,5 @@ namespace Immortal.Test
 
             return true;
         }
-
-        public static bool IsContaining<T>(ICollection<T> collection, T item, string errorMessage)
-        {
-            if (!collection.Contains(item))
-            {
-                Debug.LogError(errorMessage);
-                return false;
-            }
-            
-            return true;
-        }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Immortal.App;
 using Immortal.Entities;
@@ -16,6 +15,7 @@ namespace Immortal.Test
 
         ISquareCells _squareCells;
 
+        protected int _range;
         protected List<Vector2Int> _validCells;
 
         public override bool Test()
@@ -27,24 +27,33 @@ namespace Immortal.Test
             GetRange();
             GetValidCells();
 
-            var containNegativeCells = Assert.IsContaining<Vector2Int>
+            var notContainingNegativeCells = Assert.AreEqual<bool>
             (
-                _validCells,
-                Vector2Int.down,
-                "Valid cells contain negative cell"
+                false,
+                _validCells.Contains(Vector2Int.down),
+                "Valid cells containing negative cells"
             );
+
+            Debug.Log("cell count: " + _validCells.Count);
+
+            foreach (Vector2Int vector2 in _validCells)
+            {
+                Debug.Log(vector2);
+            }
 
             var outsideRangeCell = CreateOutsideRangeCell();
-            var containOutsideRangeCell = Assert.IsContaining<Vector2Int>
+            var notContainingOutsideRangeCell = Assert.AreEqual<bool>
             (
-                _validCells,
-                outsideRangeCell,
-                "Valid cells contain outside range cell"
+                false,
+                _validCells.Contains(outsideRangeCell),
+                "Valid cells containing outsideRangeCell"
             );
 
+            Debug.Log("IsValid is " + IsValid());
+
             return
-                !containNegativeCells &&
-                !containOutsideRangeCell &&
+                notContainingNegativeCells &&
+                notContainingOutsideRangeCell &&
                 IsValid();
         }
 
@@ -53,6 +62,7 @@ namespace Immortal.Test
         void MakeGameFactory()
         {
             _gameFactory = new GameFactory();
+            Debug.Log("Making GameFactory");
         }
 
         void MakeUnits()
@@ -72,7 +82,12 @@ namespace Immortal.Test
         }
 
         protected abstract void GetValidCells();
-        protected abstract Vector2Int CreateOutsideRangeCell();
+        Vector2Int CreateOutsideRangeCell()
+        {
+            var rangeVector = new Vector2Int(_range, _range);
+
+            return rangeVector + Vector2Int.one;
+        }
         protected abstract bool IsValid();
     }
 }

@@ -7,6 +7,7 @@ namespace Immortal.Factory
     {   
         ITurnManager _turnManager;
         ICellValidator _movementValidator;
+        ICellValidator _attackValidator;
         ISquareCells _squareCells;
         ICommandHistory _commandHistory;
 
@@ -15,11 +16,14 @@ namespace Immortal.Factory
             var name = "Adam";
             var speed = 10;
             var maxMovePoints = 2;
+            var attackRange = 1;
 
             var moveable = new Moveable(maxMovePoints);
+            var combatant = new Combatant(attackRange);
             var adam = new Unit(name, speed);
 
             adam.AddComponent<IMoveable>(moveable);
+            adam.AddComponent<ICombatant>(combatant);
             
             return adam;
         }
@@ -29,8 +33,10 @@ namespace Immortal.Factory
             var name = "Bruce";
             var speed = 9;
             var maxMovePoints = 4;
+            var attackRange = 2;
 
             var moveable = new Moveable(maxMovePoints);
+            var combatant = new Combatant(attackRange);
             var bruce = new Unit(name, speed);
 
             bruce.AddComponent<IMoveable>(moveable);
@@ -69,6 +75,16 @@ namespace Immortal.Factory
             }
             
             return _movementValidator;
+        }
+
+        public ICellValidator MakeAttackValidator()
+        {
+            if (_attackValidator == null)
+            {
+                _attackValidator = new AttackValidator(MakeSquareCells());
+            }
+
+            return _attackValidator;
         }
 
         public ICommandHistory MakeCommandHistory()
