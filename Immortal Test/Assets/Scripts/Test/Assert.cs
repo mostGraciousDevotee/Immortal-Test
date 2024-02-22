@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Immortal.Test
@@ -24,6 +25,17 @@ namespace Immortal.Test
                 return false;
             }
 
+            return true;
+        }
+
+        public static bool IsContaining<T>(ICollection<T> collection, T item, string errorMessage)
+        {
+            if (!collection.Contains(item))
+            {
+                Debug.LogError(errorMessage);
+                return false;
+            }
+            
             return true;
         }
     }
