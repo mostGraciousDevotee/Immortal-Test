@@ -25,7 +25,7 @@ namespace Immortal.Test
             squareCells.AddUnit(bruce);
 
             var movementValidator = new MovementValidator(squareCells);
-            var validCells = movementValidator.GetTraversableCells
+            var validCells = movementValidator.GetValidCells
             (
                 adam.Position,
                 adamMoveable.CurrentMovePoints

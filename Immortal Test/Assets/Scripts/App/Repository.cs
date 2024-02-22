@@ -6,7 +6,7 @@ namespace Immortal.App
     {
         ITurnManager _turnManager;
         ISquareCells _squareCells;
-        IMovementValidator _movementValidator;
+        ICellValidator _movementValidator;
         ICommandHistory _commandHistory;
 
         IUnit _adam;
@@ -25,7 +25,7 @@ namespace Immortal.App
 
         public ITurnManager TurnManager => _turnManager;
         public ISquareCells SquareCells => _squareCells;
-        public IMovementValidator MovementValidator => _movementValidator;
+        public ICellValidator MovementValidator => _movementValidator;
         public ICommandHistory CommandHistory => _commandHistory;
 
         public IUnit Adam => _adam;
@@ -35,7 +35,7 @@ namespace Immortal.App
     public interface IRepository
     {
         ITurnManager TurnManager {get; }
-        IMovementValidator MovementValidator {get; }
+        ICellValidator MovementValidator {get; }
         ISquareCells SquareCells {get; }
         ICommandHistory CommandHistory {get; }
 

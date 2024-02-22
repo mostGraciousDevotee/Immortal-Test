@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 678818864}
   - component: {fileID: 678818865}
   - component: {fileID: 678818866}
+  - component: {fileID: 678818867}
   m_Layer: 0
   m_Name: BattleMain
   m_TagString: Untagged
@@ -301,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b38797745563c46a5c84632356f06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actionPanel: {fileID: 1056722464}
   _moveButtonHandler: {fileID: 1472961018}
   _endTurnButtonHandler: {fileID: 1547707790}
   _moveDisplay: {fileID: -5933971735581880658, guid: 77fc6ca698664af43b843782b58bf4b4,
@@ -330,6 +332,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b57969fac46d640b86191d51bb04d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &678818867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678818861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de2b7e411ca5e349a431c1ee23ec3e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &734989057
@@ -629,6 +643,7 @@ GameObject:
   - component: {fileID: 1056722462}
   - component: {fileID: 1056722461}
   - component: {fileID: 1056722460}
+  - component: {fileID: 1056722464}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -735,6 +750,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056722458}
   m_CullTransparentMesh: 1
+--- !u!114 &1056722464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056722458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d26ce7c6cb56ad4ca987620a6eca10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0

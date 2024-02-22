@@ -1,45 +1,46 @@
 using System;
 using System.Collections.Generic;
-using Immortal.Entities;
 using UnityEngine;
+using Immortal.Entities;
 
 namespace Immortal.App
 {
-    public class MovementValidator : IMovementValidator
+    public abstract class CellValidator : ICellValidator
     {
-        ISquareCells _squareCells;
-        Vector2Int _currentPos;
         List<Vector2Int> _currentNeighbours = new List<Vector2Int>();
         List<Vector2Int> _visitedCells = new List<Vector2Int>();
         Queue<Vector2Int> _currentNeighboursQueue = new Queue<Vector2Int>();
         Queue<Vector2Int> _nextNeighboursQueue = new Queue<Vector2Int>();
 
-        public MovementValidator(ISquareCells squareCells)
+        protected ISquareCells _squareCells;
+        protected Vector2Int _currentPos;
+
+        protected CellValidator(ISquareCells squareCells)
         {
             _squareCells = squareCells;
         }
-        
-        public List<Vector2Int> GetTraversableCells(Vector2Int startPos, int currentMoveRange)
+
+        public List<Vector2Int> GetValidCells(Vector2Int startPos, int range)
         {
             Reset();
             _currentPos = startPos;
-            
-            var traversableCells = new List<Vector2Int>();
+
+            var validCells = new List<Vector2Int>();
 
             EnqueueCurrentNeighboursOf(_currentPos);
             _visitedCells.Add(_currentPos);
 
-            while (currentMoveRange > 0)
+            while (range > 0)
             {
-                FindTraversableCells(traversableCells);
+                FindValicCells(validCells);
 
                 CopyNextQueueToCurrent();
                 _nextNeighboursQueue.Clear();
 
-                currentMoveRange--;
+                range--;
             }
 
-            return traversableCells;
+            return validCells;
         }
 
         void Reset()
@@ -77,7 +78,7 @@ namespace Immortal.App
             return neighbours;
         }
 
-        void FindTraversableCells(List<Vector2Int> traversableCells)
+        void FindValicCells(List<Vector2Int> traversableCells)
         {
             while (_currentNeighboursQueue.Count > 0)
             {
@@ -90,12 +91,11 @@ namespace Immortal.App
                 EnqueueNextNeighbours(_currentPos);
 
                 bool isInsideCells = _squareCells.IsInside(_currentPos);
-                bool isCellOccupied = _squareCells.IsOccupied(_currentPos);
                 bool isVisited = _visitedCells.Contains(_currentPos);
 
-                if (isInsideCells && !isCellOccupied && !isVisited)
+                if (isInsideCells && IsCellValid() && !isVisited)
                 {
-                     traversableCells.Add(_currentPos);
+                    traversableCells.Add(_currentPos);
                 }
 
                 _visitedCells.Add(_currentPos);
@@ -115,6 +115,8 @@ namespace Immortal.App
             }
         }
 
+        protected abstract bool IsCellValid();
+
         void CopyNextQueueToCurrent()
         {
             foreach (Vector2Int cellVector in _nextNeighboursQueue)
@@ -122,10 +124,5 @@ namespace Immortal.App
                 _currentNeighboursQueue.Enqueue(cellVector);
             }
         }
-    }
-
-    public interface IMovementValidator
-    {
-        List<Vector2Int> GetTraversableCells(Vector2Int startPos, int currentMoveRange);
     }
 }

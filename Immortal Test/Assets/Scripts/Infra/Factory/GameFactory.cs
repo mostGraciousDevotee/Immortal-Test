@@ -6,7 +6,7 @@ namespace Immortal.Factory
     public class GameFactory : IGameFactory
     {   
         ITurnManager _turnManager;
-        IMovementValidator _movementValidator;
+        ICellValidator _movementValidator;
         ISquareCells _squareCells;
         ICommandHistory _commandHistory;
 
@@ -61,7 +61,7 @@ namespace Immortal.Factory
             return _squareCells;
         }
 
-        public IMovementValidator MakeMovementValidator()
+        public ICellValidator MakeMovementValidator()
         {
             if (_movementValidator == null)
             {

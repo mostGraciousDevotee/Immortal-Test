@@ -5,16 +5,17 @@ namespace Immortal.App
 {
     public class DisplayMovement : ActionCommand
     {
-        IMovementValidator _movementValidator;
+        ICellValidator _movementValidator;
+        ICommandHistory _commandHistory;
+
         ICellDisplays _moveDisplays;
         ICellDisplay _moveDisplayPrefab;
         IHideable _actionPanel;
-        ICommandHistory _commandHistory;
         
         public DisplayMovement
         (
             ITurnManager turnManager,
-            IMovementValidator movementValidator,
+            ICellValidator movementValidator,
             ICellDisplays moveDisplay,
             ICellDisplay cellDisplayPrefab,
             IHideable actionPanel,
@@ -41,7 +42,7 @@ namespace Immortal.App
 
             var currentMovePoints = moveable.CurrentMovePoints;
 
-            var validPositions = _movementValidator.GetTraversableCells(unitPos, currentMovePoints);
+            var validPositions = _movementValidator.GetValidCells(unitPos, currentMovePoints);
             _moveDisplays.Show(_moveDisplayPrefab, validPositions);
             _actionPanel.Hide();
             _commandHistory.Push(this);
