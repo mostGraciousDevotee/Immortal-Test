@@ -3,6 +3,7 @@ using Immortal.App;
 using Immortal.View;
 using Immortal.Factory;
 using Immortal.UI;
+using Immortal.FactoryImplementation;
 
 namespace Immortal.Main
 {

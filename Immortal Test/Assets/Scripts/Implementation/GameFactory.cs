@@ -1,7 +1,8 @@
 using Immortal.App;
 using Immortal.Entities;
+using Immortal.EntityFactory;
 
-namespace Immortal.Factory
+namespace Immortal.FactoryImplementation
 {
     public class GameFactory : IGameFactory
     {   

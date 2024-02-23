@@ -1,4 +1,5 @@
 using Immortal.Entities;
+using Immortal.EntityFactory;
 
 namespace Immortal.App
 {

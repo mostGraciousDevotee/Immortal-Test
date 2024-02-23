@@ -1,6 +1,7 @@
+using Immortal.App;
 using Immortal.Entities;
 
-namespace Immortal.App
+namespace Immortal.EntityFactory
 {
     public interface IGameFactory
     {

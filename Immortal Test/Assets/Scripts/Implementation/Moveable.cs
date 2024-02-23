@@ -1,8 +1,9 @@
 using System;
+using Immortal.Entities;
 
-namespace Immortal.Entities
+namespace Immortal.FactoryImplementation
 {
-    public class Moveable : Component, IMoveable
+    public class Moveable : IMoveable
     {
         int _maxMovePoints;
         int _currentMovePoints;
@@ -29,12 +30,5 @@ namespace Immortal.Entities
                 MovePointChanged?.Invoke(this);
             }
         }
-    }
-
-    public interface IMoveable : IComponent
-    {
-        event Action<IMoveable> MovePointChanged;
-        int MaxMovePoints { get; }
-        int CurrentMovePoints { get; set; }
     }
 }

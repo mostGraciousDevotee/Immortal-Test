@@ -1,6 +1,5 @@
-using UnityEngine;
-using Immortal.App;
 using Immortal.Entities;
+using Immortal.FactoryImplementation;
 
 namespace Immortal.Test
 {
@@ -34,4 +33,3 @@ namespace Immortal.Test
         }
     }
 }
-

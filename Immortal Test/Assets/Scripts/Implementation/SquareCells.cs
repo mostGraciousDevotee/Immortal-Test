@@ -1,6 +1,7 @@
 using UnityEngine;
+using Immortal.Entities;
 
-namespace Immortal.Entities
+namespace Immortal.FactoryImplementation
 {
     public class SquareCells : ISquareCells
     {
@@ -54,17 +55,5 @@ namespace Immortal.Entities
 
             return isCellOccupied;
         }
-    }
-
-    public interface ISquareCells
-    {
-        int Width {get; }
-        int Length {get; }
-        int CellSize {get; }
-
-        void AddUnit(IUnit unit);
-        
-        bool IsInside(Vector2Int pos);
-        bool IsOccupied(Vector2Int pos);
     }
 }

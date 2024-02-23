@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Immortal.App;
 using Immortal.Entities;
-using Immortal.Factory;
+using Immortal.EntityFactory;
+using Immortal.FactoryImplementation;
 using UnityEngine;
 
 namespace Immortal.Test

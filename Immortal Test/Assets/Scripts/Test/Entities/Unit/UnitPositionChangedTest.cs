@@ -1,4 +1,4 @@
-using Immortal.Factory;
+using Immortal.FactoryImplementation;
 using UnityEngine;
 
 namespace Immortal.Test

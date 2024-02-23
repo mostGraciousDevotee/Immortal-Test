@@ -1,5 +1,5 @@
-using Immortal.Entities;
 using UnityEngine;
+using Immortal.FactoryImplementation;
 
 namespace Immortal.Test
 {

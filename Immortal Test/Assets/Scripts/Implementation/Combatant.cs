@@ -1,6 +1,8 @@
-namespace Immortal.Entities
+using Immortal.Entities;
+
+namespace Immortal.FactoryImplementation
 {
-    public class Combatant : Component, ICombatant
+    public class Combatant : ICombatant
     {
         int _attackRange;
         

@@ -1,6 +1,7 @@
+using Immortal.Entities;
 using UnityEngine;
 
-namespace Immortal.Entities
+namespace Immortal.FactoryImplementation
 {
     public class Cell : ICell
     {
@@ -35,15 +36,5 @@ namespace Immortal.Entities
         {
             return _occupyingUnit;
         }
-    }
-
-    public interface ICell
-    {
-        Vector2Int Position{get; }
-        bool IsOccupied{get; }
-        
-        void AddUnit(IUnit unit);
-        void RemoveUnit();
-        IUnit GetOccupyingUnit();
     }
 }
