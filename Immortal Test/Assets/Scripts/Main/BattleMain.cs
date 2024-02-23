@@ -42,7 +42,7 @@ namespace Immortal.Main
 
         void SetUpButtons()
         {
-            _buttonBuilder.Initialize(_repository);
+            _buttonBuilder.Build(_repository);
         }
 
         void Start()

@@ -9,20 +9,23 @@ namespace Immortal.Factory
     {
         [SerializeField] Panel _actionPanel;
         [SerializeField] ButtonHandler _moveButtonHandler;
+        [SerializeField] ButtonHandler _attackButtonHandler;
         [SerializeField] ButtonHandler _endTurnButtonHandler;
 
         IRepository _repository;
 
-        [SerializeField] CellDisplay _moveDisplay;
         [SerializeField] CellDisplays _cellDisplays;
+        [SerializeField] CellDisplay _moveDisplay;
+        [SerializeField] CellDisplay _attackDisplay;
 
-        public void Initialize(IRepository repository)
+        public void Build(IRepository repository)
         {
             _repository = repository;
 
             _cellDisplays.Init(_repository.SquareCells.CellSize);
 
             BuildMoveButton();
+            BuildAttackButton();
             BuildEndTurnButton();
         }
 
@@ -37,13 +40,29 @@ namespace Immortal.Factory
             var displayMove = new DisplayMovement
             (
                 _repository.TurnManager,
+                _repository.CommandHistory,
                 _repository.MovementValidator,
                 _cellDisplays,
                 _moveDisplay,
-                _actionPanel,
-                _repository.CommandHistory
+                _actionPanel
             );
+
             _moveButtonHandler.Command = displayMove;
+        }
+
+        void BuildAttackButton()
+        {
+            var displayAttack = new DisplayAttack
+            (
+                _repository.TurnManager,
+                _repository.CommandHistory,
+                _repository.MovementValidator,
+                _cellDisplays,
+                _attackDisplay,
+                _actionPanel
+            );
+
+            _attackButtonHandler.Command = displayAttack;
         }
     }
 }

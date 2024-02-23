@@ -3,9 +3,9 @@ using Immortal.Entities;
 
 namespace Immortal.App
 {
-    public class DisplayMovement : DisplayRange
+    public class DisplayAttack : DisplayRange
     {
-        public DisplayMovement
+        public DisplayAttack
         (
             ITurnManager turnManager,
             ICommandHistory commandHistory,
@@ -27,14 +27,14 @@ namespace Immortal.App
 
         protected override int GetRange(IUnit currentUnit)
         {
-            var moveable = currentUnit.GetComponent<IMoveable>();
+            var combatant = currentUnit.GetComponent<ICombatant>();
 
-            if (moveable == null)
+            if (combatant == null)
             {
-                throw new Exception("Failed to fetch moveable on DisplayMovement command!");
+                throw new Exception("Failed to fetch combatant on DisplayAttack command");
             }
 
-            return moveable.CurrentMovePoints;
+            return combatant.AttackRange;
         }
     }
 }

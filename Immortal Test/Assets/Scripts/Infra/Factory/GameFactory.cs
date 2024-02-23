@@ -40,6 +40,7 @@ namespace Immortal.Factory
             var bruce = new Unit(name, speed);
 
             bruce.AddComponent<IMoveable>(moveable);
+            bruce.AddComponent<ICombatant>(combatant);
 
             return bruce;
         }
