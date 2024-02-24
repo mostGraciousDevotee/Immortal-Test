@@ -9,9 +9,9 @@ namespace Immortal.Test
         
         public override bool Test()
         {
-            var gameFactory = new GameFactory();
+            var unitFactory = new UnitFactory();
 
-            var adam = gameFactory.MakeAdam();
+            var adam = unitFactory.MakeAdam();
             var vector19 = new Vector2Int(19, 19);
             
             adam.PositionChanged += OnPositionChanged;

@@ -1,8 +1,7 @@
 using Immortal.App;
 using Immortal.CellSystem;
-using Immortal.UnitSystem;
 
-namespace Immortal.EntityFactory
+namespace Immortal.InteractorFactory
 {
     public interface IGameFactory
     {
@@ -11,7 +10,5 @@ namespace Immortal.EntityFactory
         ICellValidator MakeMovementValidator();
         ICellValidator MakeAttackValidator();
         ICommandHistory MakeCommandHistory();
-        IUnit MakeAdam();
-        IUnit MakeBruce();
     }
 }

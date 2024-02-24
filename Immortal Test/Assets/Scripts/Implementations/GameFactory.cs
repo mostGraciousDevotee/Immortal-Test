@@ -1,10 +1,8 @@
-using Immortal.App;
 using Immortal.CellImplementation;
-using Immortal.UnitSystem;
 using Immortal.CellSystem;
-using Immortal.EntityFactory;
+using Immortal.InteractorFactory;
 
-namespace Immortal.UnitImplementation
+namespace Immortal.App
 {
     public class GameFactory : IGameFactory
     {   
@@ -13,40 +11,6 @@ namespace Immortal.UnitImplementation
         ICellValidator _attackValidator;
         ISquareCells _squareCells;
         ICommandHistory _commandHistory;
-
-        public IUnit MakeAdam()
-        {
-            var name = "Adam";
-            var speed = 10;
-            var maxMovePoints = 2;
-            var attackRange = 1;
-
-            var moveable = new Moveable(maxMovePoints);
-            var combatant = new Combatant(attackRange);
-            var adam = new Unit(name, speed);
-
-            adam.AddComponent<IMoveable>(moveable);
-            adam.AddComponent<ICombatant>(combatant);
-            
-            return adam;
-        }
-
-        public IUnit MakeBruce()
-        {
-            var name = "Bruce";
-            var speed = 9;
-            var maxMovePoints = 4;
-            var attackRange = 2;
-
-            var moveable = new Moveable(maxMovePoints);
-            var combatant = new Combatant(attackRange);
-            var bruce = new Unit(name, speed);
-
-            bruce.AddComponent<IMoveable>(moveable);
-            bruce.AddComponent<ICombatant>(combatant);
-
-            return bruce;
-        }
 
         public ITurnManager MakeTurnManager()
         {

@@ -1,6 +1,7 @@
 using Immortal.UnitSystem;
 using Immortal.CellSystem;
-using Immortal.EntityFactory;
+using Immortal.InteractorFactory;
+using Immortal.UnitFactoryPackage;
 
 namespace Immortal.App
 {
@@ -17,7 +18,7 @@ namespace Immortal.App
         IUnit _adam;
         IUnit _bruce;
 
-        public Repository(IGameFactory factory)
+        public Repository(IGameFactory factory, IUnitFactory unitFactory)
         {
             _turnManager = factory.MakeTurnManager();
 
@@ -27,8 +28,8 @@ namespace Immortal.App
 
             _commandHistory = factory.MakeCommandHistory();
 
-            _adam = factory.MakeAdam();
-            _bruce = factory.MakeBruce();
+            _adam = unitFactory.MakeAdam();
+            _bruce = unitFactory.MakeBruce();
         }
 
         public ITurnManager TurnManager => _turnManager;

@@ -31,7 +31,9 @@ namespace Immortal.Main
         {
             // TODO: When Factory become so big cache it in GameManager
             var gameFactory = new GameFactory();
-            _repository = new Repository(gameFactory);
+            var unitFactory = new UnitFactory();
+
+            _repository = new Repository(gameFactory, unitFactory);
             _unitPresenters = GetComponent<UnitPresenters>();
             _buttonBuilder = GetComponent<ButtonBuilder>();
         }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Immortal.UnitImplementation;
 using UnityEngine;
 
 namespace Immortal.Test
@@ -9,9 +8,7 @@ namespace Immortal.Test
         List<BaseTest> _tests = new List<BaseTest>();
         
         void Start()
-        {
-            var gameFactory = new GameFactory();
-            
+        {   
             AddTest(new UnitPropertyTest());
             AddTest(new UnitReadyTest());
             AddTest(new UnitPositionChangedTest());

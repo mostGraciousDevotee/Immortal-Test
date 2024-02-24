@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using Immortal.UnitSystem;
 using Immortal.CellSystem;
-using Immortal.EntityFactory;
+using Immortal.InteractorFactory;
 using Immortal.UnitImplementation;
 using UnityEngine;
+using Immortal.UnitFactoryPackage;
+using Immortal.App;
 
 namespace Immortal.Test
 {
     public abstract class CellValidatorTest : BaseTest
     {
         protected IGameFactory _gameFactory;
+        protected IUnitFactory _unitFactory;
 
         protected IUnit _adam;
         protected IUnit _bruce;
@@ -35,13 +38,6 @@ namespace Immortal.Test
                 "Valid cells containing negative cells"
             );
 
-            Debug.Log("cell count: " + _validCells.Count);
-
-            foreach (Vector2Int vector2 in _validCells)
-            {
-                Debug.Log(vector2);
-            }
-
             var outsideRangeCell = CreateOutsideRangeCell();
             var notContainingOutsideRangeCell = Assert.AreEqual<bool>
             (
@@ -49,8 +45,6 @@ namespace Immortal.Test
                 _validCells.Contains(outsideRangeCell),
                 "Valid cells containing outsideRangeCell"
             );
-
-            Debug.Log("IsValid is " + IsValid());
 
             return
                 notContainingNegativeCells &&
@@ -63,13 +57,13 @@ namespace Immortal.Test
         void MakeGameFactory()
         {
             _gameFactory = new GameFactory();
-            Debug.Log("Making GameFactory");
+            _unitFactory = new UnitFactory();
         }
 
         void MakeUnits()
         {
-            _adam = _gameFactory.MakeAdam();
-            _bruce = _gameFactory.MakeBruce();
+            _adam = _unitFactory.MakeAdam();
+            _bruce = _unitFactory.MakeBruce();
 
             _adam.Position = Vector2Int.zero;
             _bruce.Position = Vector2Int.up;

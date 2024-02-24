@@ -11,8 +11,8 @@ namespace Immortal.Test
 
         protected override void GetUnit()
         {
-            _adam = _factory.MakeAdam();
-            _bruce = _factory.MakeBruce();
+            _adam = _unitFactory.MakeAdam();
+            _bruce = _unitFactory.MakeBruce();
         }
         protected override void BuildTurnManager()
         {

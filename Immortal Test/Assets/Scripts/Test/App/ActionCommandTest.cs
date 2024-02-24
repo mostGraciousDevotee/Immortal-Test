@@ -1,18 +1,18 @@
 using Immortal.App;
-using Immortal.EntityFactory;
+using Immortal.UnitFactoryPackage;
 using Immortal.UnitImplementation;
 
 namespace Immortal.Test
 {
     public abstract class ActionCommandTest : BaseTest
     {
-        protected IGameFactory _factory;
+        protected IUnitFactory _unitFactory;
         protected ITurnManager _turnManager;
         protected ICommand _command;
         
         public ActionCommandTest()
         {
-            _factory = new GameFactory();
+            _unitFactory = new UnitFactory();
         }
         
         public override bool Test()

@@ -36,9 +36,10 @@ namespace Immortal.Test
                 ErrorMessage + " at MidVector"
             );
 
-            var gameFactory = new GameFactory();
-            var adam = gameFactory.MakeAdam();
-            var bruce = gameFactory.MakeBruce();
+            var unitFactory = new UnitFactory();
+
+            var adam = unitFactory.MakeAdam();
+            var bruce = unitFactory.MakeBruce();
             adam.Position = Vector2Int.zero;
             bruce.Position = Vector2Int.up;
 

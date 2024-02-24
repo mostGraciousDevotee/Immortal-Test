@@ -9,7 +9,7 @@ namespace Immortal.Test
         
         protected override void GetUnit()
         {
-            _adam = _factory.MakeAdam();
+            _adam = _unitFactory.MakeAdam();
         }
         
         protected override void BuildTurnManager()
