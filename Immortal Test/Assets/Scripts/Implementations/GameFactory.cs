@@ -1,8 +1,10 @@
 using Immortal.App;
-using Immortal.Entities;
+using Immortal.CellImplementation;
+using Immortal.UnitSystem;
+using Immortal.CellSystem;
 using Immortal.EntityFactory;
 
-namespace Immortal.FactoryImplementation
+namespace Immortal.UnitImplementation
 {
     public class GameFactory : IGameFactory
     {   

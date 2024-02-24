@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Immortal.Entities;
+using Immortal.UnitSystem;
 using UnityEngine;
 
-namespace Immortal.FactoryImplementation
+namespace Immortal.UnitImplementation
 {
     public class Unit : IUnit
     {

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Immortal.FactoryImplementation;
+using Immortal.UnitImplementation;
 using UnityEngine;
 
 namespace Immortal.Test

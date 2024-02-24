@@ -1,6 +1,5 @@
-using Immortal.Entities;
-using Immortal.Factory;
-using Immortal.FactoryImplementation;
+using Immortal.CellImplementation;
+using Immortal.UnitImplementation;
 using UnityEngine;
 
 namespace Immortal.Test

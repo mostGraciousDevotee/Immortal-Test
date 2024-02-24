@@ -1,4 +1,4 @@
-namespace Immortal.Entities
+namespace Immortal.UnitSystem
 {
     public interface ICombatant : IComponent
     {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Immortal.Entities;
+using Immortal.UnitSystem;
+using Immortal.CellSystem;
 
 namespace Immortal.App
 {

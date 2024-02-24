@@ -1,6 +1,6 @@
 using System;
 
-namespace Immortal.Entities
+namespace Immortal.UnitSystem
 {
     public interface IMoveable : IComponent
     {

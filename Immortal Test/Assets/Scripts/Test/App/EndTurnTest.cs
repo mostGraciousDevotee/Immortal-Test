@@ -1,5 +1,5 @@
 using Immortal.App;
-using Immortal.Entities;
+using Immortal.UnitSystem;
 
 namespace Immortal.Test
 {

@@ -1,5 +1,5 @@
-using Immortal.Entities;
-using Immortal.FactoryImplementation;
+using Immortal.UnitSystem;
+using Immortal.UnitImplementation;
 
 namespace Immortal.Test
 {

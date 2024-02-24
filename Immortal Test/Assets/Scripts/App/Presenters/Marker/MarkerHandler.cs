@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Immortal.Entities;
+using Immortal.UnitSystem;
 
 namespace Immortal.App
 {

@@ -1,4 +1,4 @@
-using Immortal.FactoryImplementation;
+using Immortal.UnitImplementation;
 
 namespace Immortal.Test
 {

@@ -1,4 +1,5 @@
-using Immortal.Entities;
+using Immortal.UnitSystem;
+using Immortal.CellSystem;
 using Immortal.EntityFactory;
 
 namespace Immortal.App

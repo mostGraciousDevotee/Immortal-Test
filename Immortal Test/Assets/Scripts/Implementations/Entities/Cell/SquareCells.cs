@@ -1,8 +1,9 @@
 using UnityEngine;
-using Immortal.Entities;
 using System;
+using Immortal.UnitSystem;
+using Immortal.CellSystem;
 
-namespace Immortal.FactoryImplementation
+namespace Immortal.CellImplementation
 {
     public class SquareCells : ISquareCells
     {

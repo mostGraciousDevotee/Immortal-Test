@@ -1,7 +1,8 @@
-using Immortal.Entities;
 using UnityEngine;
+using Immortal.UnitSystem;
+using Immortal.CellSystem;
 
-namespace Immortal.FactoryImplementation
+namespace Immortal.CellImplementation
 {
     public class Cell : ICell
     {

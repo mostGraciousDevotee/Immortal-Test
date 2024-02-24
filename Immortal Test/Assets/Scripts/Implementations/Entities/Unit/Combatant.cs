@@ -1,6 +1,6 @@
-using Immortal.Entities;
+using Immortal.UnitSystem;
 
-namespace Immortal.FactoryImplementation
+namespace Immortal.UnitImplementation
 {
     public class Combatant : ICombatant
     {

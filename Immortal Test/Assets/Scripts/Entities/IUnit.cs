@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Immortal.Entities
+namespace Immortal.UnitSystem
 {
     public interface IUnit
     {

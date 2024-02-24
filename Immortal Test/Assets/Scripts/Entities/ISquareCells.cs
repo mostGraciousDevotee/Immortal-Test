@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using Immortal.UnitSystem;
 
-namespace Immortal.Entities
+namespace Immortal.CellSystem
 {
     public interface ISquareCells
     {
