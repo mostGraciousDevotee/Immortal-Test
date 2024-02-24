@@ -6,8 +6,11 @@ namespace Immortal.App
     public class Repository : IRepository
     {
         ITurnManager _turnManager;
+
         ISquareCells _squareCells;
         ICellValidator _movementValidator;
+        ICellValidator _attackValidator;
+
         ICommandHistory _commandHistory;
 
         IUnit _adam;
@@ -16,8 +19,11 @@ namespace Immortal.App
         public Repository(IGameFactory factory)
         {
             _turnManager = factory.MakeTurnManager();
+
             _squareCells = factory.MakeSquareCells();
             _movementValidator = factory.MakeMovementValidator();
+            _attackValidator = factory.MakeAttackValidator();
+
             _commandHistory = factory.MakeCommandHistory();
 
             _adam = factory.MakeAdam();
@@ -27,6 +33,7 @@ namespace Immortal.App
         public ITurnManager TurnManager => _turnManager;
         public ISquareCells SquareCells => _squareCells;
         public ICellValidator MovementValidator => _movementValidator;
+        public ICellValidator AttackValidator => _attackValidator;
         public ICommandHistory CommandHistory => _commandHistory;
 
         public IUnit Adam => _adam;
@@ -37,6 +44,7 @@ namespace Immortal.App
     {
         ITurnManager TurnManager {get; }
         ICellValidator MovementValidator {get; }
+        ICellValidator AttackValidator {get; }
         ISquareCells SquareCells {get; }
         ICommandHistory CommandHistory {get; }
 

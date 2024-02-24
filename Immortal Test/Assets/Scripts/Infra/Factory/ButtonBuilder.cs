@@ -56,7 +56,7 @@ namespace Immortal.Factory
             (
                 _repository.TurnManager,
                 _repository.CommandHistory,
-                _repository.MovementValidator,
+                _repository.AttackValidator,
                 _cellDisplays,
                 _attackDisplay,
                 _actionPanel
