@@ -25,10 +25,9 @@ namespace Immortal.App
             _unitPresenters = unitViews;
             _markerHandler = new MarkerHandler(marker, _unitPresenterDict);
 
-            BuildTurnManager();            
             LinkUnitViews();
-
             PlaceUnits();
+            BuildTurnManager();
         }
 
         void LinkUnitViews()
@@ -51,9 +50,6 @@ namespace Immortal.App
 
         void BuildTurnManager()
         {
-            _turnManager.AddUnit(_repository.Adam);
-            _turnManager.AddUnit(_repository.Bruce);
-
             _turnManager.UnitActive += _markerHandler.Mark;
         }
 
@@ -64,6 +60,8 @@ namespace Immortal.App
             
             adam.Position = new Vector2Int(5, 5);
             bruce.Position = new Vector2Int(4, 5);
+
+            _squareCells.UnitAdded += _turnManager.AddUnit;
             
             _squareCells.AddUnit(adam);
             _squareCells.AddUnit(bruce);

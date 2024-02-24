@@ -1,5 +1,6 @@
 using UnityEngine;
 using Immortal.Entities;
+using System;
 
 namespace Immortal.FactoryImplementation
 {
@@ -27,6 +28,8 @@ namespace Immortal.FactoryImplementation
             }
         }
 
+        public event Action<IUnit> UnitAdded;
+
         public int Width => _width;
         public int Length => _length;
         public int CellSize => _cellSize;
@@ -41,7 +44,17 @@ namespace Immortal.FactoryImplementation
 
         public void AddUnit(IUnit unit)
         {
-            _cells[unit.Position.x, unit.Position.y].AddUnit(unit);
+            var cell = _cells[unit.Position.x, unit.Position.y];
+
+            if (!cell.IsOccupied)
+            {
+                cell.AddUnit(unit);
+                UnitAdded?.Invoke(unit);
+            }
+            else
+            {
+                throw new Exception("Trying to add Unit to already occupied cells!");
+            }
         }
 
         public bool IsOccupied(Vector2Int pos)
