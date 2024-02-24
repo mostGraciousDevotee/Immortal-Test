@@ -6,5 +6,6 @@ namespace Immortal.UnitFactoryPackage
     {
         IUnit MakeAdam();
         IUnit MakeBruce();
+        ITurnManager MakeTurnManager();
     }
 }

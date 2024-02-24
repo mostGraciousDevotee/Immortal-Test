@@ -5,6 +5,8 @@ namespace Immortal.UnitImplementation
 {
     public class UnitFactory : IUnitFactory
     {
+        ITurnManager _turnManager;
+        
         public IUnit MakeAdam()
         {
             var name = "Adam";
@@ -37,6 +39,16 @@ namespace Immortal.UnitImplementation
             bruce.AddComponent<ICombatant>(combatant);
 
             return bruce;
+        }
+
+        public ITurnManager MakeTurnManager()
+        {
+            if (_turnManager == null)
+            {
+                _turnManager = new TurnManager();
+            }
+
+            return _turnManager;
         }
     }
 }

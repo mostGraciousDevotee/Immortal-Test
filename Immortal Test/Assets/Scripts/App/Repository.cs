@@ -20,16 +20,15 @@ namespace Immortal.App
 
         public Repository(IGameFactory factory, IUnitFactory unitFactory)
         {
-            _turnManager = factory.MakeTurnManager();
+            _turnManager = unitFactory.MakeTurnManager();
+            _adam = unitFactory.MakeAdam();
+            _bruce = unitFactory.MakeBruce();
 
             _squareCells = factory.MakeSquareCells();
             _movementValidator = factory.MakeMovementValidator();
             _attackValidator = factory.MakeAttackValidator();
 
             _commandHistory = factory.MakeCommandHistory();
-
-            _adam = unitFactory.MakeAdam();
-            _bruce = unitFactory.MakeBruce();
         }
 
         public ITurnManager TurnManager => _turnManager;

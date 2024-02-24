@@ -6,21 +6,10 @@ namespace Immortal.App
 {
     public class GameFactory : IGameFactory
     {   
-        ITurnManager _turnManager;
         ICellValidator _movementValidator;
         ICellValidator _attackValidator;
         ISquareCells _squareCells;
         ICommandHistory _commandHistory;
-
-        public ITurnManager MakeTurnManager()
-        {
-            if (_turnManager == null)
-            {
-                _turnManager = new TurnManager();
-            }
-
-            return _turnManager;
-        }
 
         public ISquareCells MakeSquareCells()
         {

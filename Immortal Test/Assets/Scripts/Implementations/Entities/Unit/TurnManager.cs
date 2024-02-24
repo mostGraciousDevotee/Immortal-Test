@@ -2,15 +2,12 @@ using System;
 using System.Collections.Generic;
 using Immortal.UnitSystem;
 
-namespace Immortal.App
+namespace Immortal.UnitImplementation
 {
     public class TurnManager : ITurnManager
     {
         int _processGuard;
 
-        // TODO: TurnManager should work with SquareCells or ICells
-        // as the cells is the validator when unit is added to the
-        // game
         IUnit _currentUnit;
         List<IUnit> _unitList = new List<IUnit>();
         Queue<IUnit> _unitQueue = new Queue<IUnit>();
@@ -123,16 +120,5 @@ namespace Immortal.App
         }
 
         #endregion
-    }
-
-    public interface ITurnManager : IDisposable
-    {
-        event Action<IUnit> UnitActive;
-
-        IUnit CurrentUnit {get; }
-        
-        void AddUnit(IUnit unit);
-        void Start();
-        void EndTurn();
     }
 }
