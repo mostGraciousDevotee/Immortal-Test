@@ -1,5 +1,5 @@
-using Immortal.App;
 using Immortal.UnitSystem;
+using Immortal.CommandImplementation;
 
 namespace Immortal.Test
 {
@@ -18,7 +18,7 @@ namespace Immortal.Test
         {
             _turnManager.AddUnit(_adam);
             _turnManager.AddUnit(_bruce);
-            _turnManager.UnitActive += OnUnitActive;
+            // _turnManager.UnitActive += OnUnitActive;
         }
         protected override void GetCommand()
         {

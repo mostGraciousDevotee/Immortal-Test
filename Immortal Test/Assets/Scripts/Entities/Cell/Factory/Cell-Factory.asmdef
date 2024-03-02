@@ -1,0 +1,16 @@
+{
+    "name": "Cell-Factory",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7f88039175b694d48a049195a15de956"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

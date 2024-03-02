@@ -1,18 +1,21 @@
 using System.Collections.Generic;
+using UnityEngine;
+
 using Immortal.UnitSystem;
 using Immortal.CellSystem;
-using Immortal.InteractorFactory;
-using Immortal.UnitImplementation;
-using UnityEngine;
+
+using Immortal.CellFactoryPackage;
 using Immortal.UnitFactoryPackage;
-using Immortal.App;
+
+using Immortal.UnitImplementation;
+using Immortal.CellImplementation;
 
 namespace Immortal.Test
 {
     public abstract class CellValidatorTest : BaseTest
     {
-        protected IGameFactory _gameFactory;
         protected IUnitFactory _unitFactory;
+        protected ICellFactory _cellFactory;
 
         protected IUnit _adam;
         protected IUnit _bruce;
@@ -56,8 +59,8 @@ namespace Immortal.Test
 
         void MakeGameFactory()
         {
-            _gameFactory = new GameFactory();
             _unitFactory = new UnitFactory();
+            _cellFactory = new CellFactory();
         }
 
         void MakeUnits()
@@ -71,7 +74,7 @@ namespace Immortal.Test
 
         void MakeSquareCells()
         {
-            _squareCells = _gameFactory.MakeSquareCells();
+            _squareCells = _cellFactory.GetSquareCells();
             _squareCells.AddUnit(_adam);
             _squareCells.AddUnit(_bruce);
         }

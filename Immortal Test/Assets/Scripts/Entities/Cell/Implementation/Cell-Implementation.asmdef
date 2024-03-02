@@ -1,0 +1,18 @@
+{
+    "name": "Cell-Implementation",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ea66edc6dda4d494186c35af5fa2a468",
+        "GUID:7f88039175b694d48a049195a15de956",
+        "GUID:fd88990aaa7d94542b572fd5bf7df812"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

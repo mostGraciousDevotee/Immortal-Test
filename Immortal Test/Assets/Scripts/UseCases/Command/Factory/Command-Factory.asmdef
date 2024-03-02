@@ -1,0 +1,16 @@
+{
+    "name": "Command-Factory",
+    "rootNamespace": "",
+    "references": [
+        "GUID:96d6a639334d23141b641d8729ff82a8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

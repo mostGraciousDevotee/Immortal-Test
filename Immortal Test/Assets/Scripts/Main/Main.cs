@@ -1,40 +1,34 @@
-using Immortal.Infra;
-using Immortal.UI;
-using UnityEditor;
 using UnityEngine;
+
+using Immortal.ControllerImplementation;
+using Immortal.CommandImplementation;
+using Immortal.SceneImplementation;
+using Immortal.EngineImplementation;
+using Immortal.SceneManagement;
+using Immortal.Engine;
 
 namespace Immortal.Main
 {
     // TODO : Create IMain for testing
     public class Main : MonoBehaviour
     {
-        [SerializeField] MainPanel _mainPanel;
-        SceneLoader _sceneLoader;
-        
+        [SerializeField] MainButtons _mainButtons;
+        ISceneLoader _sceneLoader;
+        IApp _unityApp;
         
         void Awake()
         {   
-            _sceneLoader = GetComponent<SceneLoader>();
-            
-            _mainPanel.NewButtonPressed += NewGame;
-            _mainPanel.QuitButtonPressed += Quit;
+            var sceneLoader = new SceneLoader();
+            var app = new UnityApp();
+
+            var mainCommandFactory = new MainCommandFactory(sceneLoader, app);
+
+            _mainButtons.Init(mainCommandFactory);
         }
 
-        void NewGame()
+        void InitButtons()
         {
-            _mainPanel.NewButtonPressed -= NewGame;
-            _mainPanel.QuitButtonPressed -= Quit;
 
-            _sceneLoader.LoadNewGame();
-        }
-        
-        void Quit()
-        {
-        #if UNITY_EDITOR
-            EditorApplication.ExitPlaymode();
-        #else
-            Application.Quit();
-        #endif
         }
     }
 }

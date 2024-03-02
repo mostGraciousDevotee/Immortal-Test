@@ -1,5 +1,4 @@
 using Immortal.UnitSystem;
-using UnityEngine;
 
 namespace Immortal.Test
 {
@@ -13,7 +12,7 @@ namespace Immortal.Test
         protected override void GetValidCells()
         {
             var startPos = _adam.Position;
-            _validCells = _gameFactory.MakeAttackValidator().GetValidCells(_adam.Position, _range);
+            _validCells = _cellFactory.GetValidAttackProvider().GetValidCells(_adam.Position, _range);
         }
 
         protected override bool IsValid()

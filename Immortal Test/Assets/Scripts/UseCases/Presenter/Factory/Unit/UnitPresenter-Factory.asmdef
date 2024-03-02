@@ -1,0 +1,16 @@
+{
+    "name": "UnitPresenter-Factory",
+    "rootNamespace": "",
+    "references": [
+        "GUID:89389d0b80ebb474f81a720ae7fb43c8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

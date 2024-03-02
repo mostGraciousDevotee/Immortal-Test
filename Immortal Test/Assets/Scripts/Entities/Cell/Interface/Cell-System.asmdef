@@ -1,0 +1,16 @@
+{
+    "name": "Cell-System",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ea66edc6dda4d494186c35af5fa2a468"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

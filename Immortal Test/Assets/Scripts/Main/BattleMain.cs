@@ -1,55 +1,98 @@
 using UnityEngine;
-using Immortal.App;
-using Immortal.View;
-using Immortal.Factory;
-using Immortal.UI;
+
+using Immortal.GameImplementation;
+
+using Immortal.UnitFactoryPackage;
 using Immortal.UnitImplementation;
+
+using Immortal.CellFactoryPackage;
+using Immortal.CellImplementation;
+
+using Immortal.CommandFactoryPackage;
+using Immortal.CommandImplementation;
+
+using Immortal.Controller;
+using Immortal.ControllerImplementation;
+
+using Immortal.PresenterImplementation;
+using Immortal.PresenterFactory;
+using Immortal.GameSystem;
 
 namespace Immortal.Main
 {
     [RequireComponent(typeof(Mouse))]
+    [RequireComponent(typeof(PresenterContainer))]
     public class BattleMain : MonoBehaviour
     {
-        IRepository _repository;
-        IButtonBuilder _buttonBuilder;
-        UnitPresenters _unitPresenters;
-        [SerializeField] Marker _marker;
-        IGame _game;
+        ActionButtons _actionButtons;
         IMouse _mouse;
 
-        void Awake()
-        {
-            SetUpFactory();
-            SetUpGame();
-            SetUpButtons();
+        IUnitPresenters _unitPresenters;
+        [SerializeField] Marker _marker;
+        IGame _game;
+        
+        IUnitFactory _unitFactory;
+        ICellFactory _cellFactory;
+        ICellDisplayContainer _cellDisplayContainer;
+        IActionCommandFactory _commandFactory;
 
+        void Awake()
+        {   
             _mouse = GetComponent<Mouse>();
             _mouse.RightMouseButtonDown += HandleRightClick;
+
+            SetUpFactory();
+            
+            SetUpButtons();
+
+            SetUpGame();
         }
 
         void SetUpFactory()
         {
-            // TODO: When Factory become so big cache it in GameManager
-            var gameFactory = new GameFactory();
-            var unitFactory = new UnitFactory();
+            _unitFactory = new UnitFactory();
+            _cellFactory = new CellFactory();
 
-            _repository = new Repository(gameFactory, unitFactory);
+            _cellDisplayContainer = GetComponent<PresenterContainer>();
+            _cellDisplayContainer.Init(_cellFactory.GetSquareCells().CellSize);
+
+            _commandFactory = new ActionCommandFactory
+            (
+                _unitFactory,
+                _cellFactory,
+                _cellDisplayContainer
+            );
+
             _unitPresenters = GetComponent<UnitPresenters>();
-            _buttonBuilder = GetComponent<ButtonBuilder>();
+            _actionButtons = GetComponent<ActionButtons>();
         }
 
         private void SetUpGame()
         {
-            _game = new Game(_repository, _marker, _unitPresenters);
+            var gameBuilder = new GameBuilder
+            (
+                _unitFactory,
+                _unitPresenters,
+                _marker,
+                _cellFactory,
+                _commandFactory
+            );
+
+            _game = gameBuilder.MakeGame();
         }
 
         void SetUpButtons()
         {
-            _buttonBuilder.Build(_repository);
+            if (_commandFactory == null)
+            {
+                Debug.LogError("Command Factory is null!");
+            }
+
+            _actionButtons.Init(_commandFactory);
         }
 
         void Start()
-        {
+        {   
             _game.Run();
         }
 

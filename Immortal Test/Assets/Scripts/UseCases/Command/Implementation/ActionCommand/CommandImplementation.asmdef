@@ -1,0 +1,23 @@
+{
+    "name": "CommandImplementation",
+    "rootNamespace": "",
+    "references": [
+        "GUID:96d6a639334d23141b641d8729ff82a8",
+        "GUID:0d5e17ab9b154cc47b1d843167021b1b",
+        "GUID:ea66edc6dda4d494186c35af5fa2a468",
+        "GUID:4c7bbcd0fe88be04cbaca89c08f0ebe7",
+        "GUID:7f88039175b694d48a049195a15de956",
+        "GUID:fd88990aaa7d94542b572fd5bf7df812",
+        "GUID:87193d6029975c64db9c26588da883b7",
+        "GUID:aed230134131da74ca83399e2f496552"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

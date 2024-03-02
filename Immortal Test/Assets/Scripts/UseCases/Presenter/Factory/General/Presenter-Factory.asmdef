@@ -1,0 +1,16 @@
+{
+    "name": "Presenter-Factory",
+    "rootNamespace": "",
+    "references": [
+        "GUID:87193d6029975c64db9c26588da883b7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

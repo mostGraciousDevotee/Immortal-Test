@@ -12,7 +12,7 @@ namespace Immortal.Test
         protected override void GetValidCells()
         {
             var startPos = _adam.Position;
-            _validCells = _gameFactory.MakeMovementValidator().GetValidCells(_adam.Position, _range);
+            _validCells = _cellFactory.GetValidMoveProvider().GetValidCells(_adam.Position, _range);
         }
 
         protected override bool IsValid()

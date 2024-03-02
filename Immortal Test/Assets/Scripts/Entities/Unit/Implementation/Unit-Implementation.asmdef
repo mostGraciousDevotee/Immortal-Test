@@ -1,0 +1,17 @@
+{
+    "name": "Unit-Implementation",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ea66edc6dda4d494186c35af5fa2a468",
+        "GUID:4c7bbcd0fe88be04cbaca89c08f0ebe7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

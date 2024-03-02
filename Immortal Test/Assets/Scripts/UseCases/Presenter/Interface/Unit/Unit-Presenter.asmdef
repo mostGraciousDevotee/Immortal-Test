@@ -1,0 +1,17 @@
+{
+    "name": "Unit-Presenter",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ea66edc6dda4d494186c35af5fa2a468",
+        "GUID:87193d6029975c64db9c26588da883b7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

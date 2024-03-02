@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 678818865}
   - component: {fileID: 678818866}
   - component: {fileID: 678818867}
+  - component: {fileID: 678818868}
   m_Layer: 0
   m_Name: BattleMain
   m_TagString: Untagged
@@ -428,6 +429,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de2b7e411ca5e349a431c1ee23ec3e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &678818868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678818861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444f81ee6169f4f4c9f96edc0fcab115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveDisplay: {fileID: -5933971735581880658, guid: 77fc6ca698664af43b843782b58bf4b4,
+    type: 3}
+  _attackDisplay: {fileID: -5933971735581880658, guid: c3a757f2e47f9c8488c47edc0e0963f9,
+    type: 3}
+  _cellDisplays: {fileID: 1476820465}
+  _actionPanel: {fileID: 1056722464}
 --- !u!1 &734989057
 GameObject:
   m_ObjectHideFlags: 0

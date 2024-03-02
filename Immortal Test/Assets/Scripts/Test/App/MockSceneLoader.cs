@@ -1,5 +1,5 @@
 using System;
-using Immortal.App;
+using Immortal.SceneManagement;
 
 namespace Immortal.Test
 {
