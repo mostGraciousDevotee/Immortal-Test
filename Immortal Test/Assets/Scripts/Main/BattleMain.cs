@@ -1,12 +1,12 @@
 using UnityEngine;
 
+using Immortal.GlobalFactory;
+
 using Immortal.GameImplementation;
 
 using Immortal.UnitFactoryPackage;
-using Immortal.UnitImplementation;
 
 using Immortal.CellFactoryPackage;
-using Immortal.CellImplementation;
 
 using Immortal.CommandFactoryPackage;
 using Immortal.CommandImplementation;
@@ -20,7 +20,7 @@ using Immortal.GameSystem;
 
 namespace Immortal.Main
 {
-    [RequireComponent(typeof(Mouse))]
+    [RequireComponent(typeof(IMouse))]
     [RequireComponent(typeof(PresenterContainer))]
     public class BattleMain : MonoBehaviour
     {
@@ -38,7 +38,7 @@ namespace Immortal.Main
 
         void Awake()
         {   
-            _mouse = GetComponent<Mouse>();
+            _mouse = GetComponent<IMouse>();
             _mouse.RightMouseButtonDown += HandleRightClick;
 
             SetUpFactory();
@@ -50,8 +50,8 @@ namespace Immortal.Main
 
         void SetUpFactory()
         {
-            _unitFactory = new UnitFactory();
-            _cellFactory = new CellFactory();
+            _unitFactory = GGFactory<IUnitFactory>.Instance;
+            _cellFactory = GGFactory<ICellFactory>.Instance;
 
             _cellDisplayContainer = GetComponent<PresenterContainer>();
             _cellDisplayContainer.Init(_cellFactory.GetSquareCells().CellSize);

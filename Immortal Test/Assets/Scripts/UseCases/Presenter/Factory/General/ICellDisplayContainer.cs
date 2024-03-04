@@ -6,6 +6,7 @@ namespace Immortal.PresenterFactory
     {
         ICellDisplay AttackDisplayPrefab {get; }
         ICellDisplay MoveDisplayPrefab {get; }
+        
         ICellDisplays CellDisplays {get; }
         IHideable ActionPanel {get; }
 

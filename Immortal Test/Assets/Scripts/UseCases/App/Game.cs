@@ -1,6 +1,11 @@
 using Immortal.UnitSystem;
 using Immortal.Command;
 using Immortal.GameSystem;
+using System;
+using Immortal.CellSystem;
+using Immortal.Presenter;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Immortal.GameImplementation
 {
@@ -8,6 +13,12 @@ namespace Immortal.GameImplementation
     {   
         ITurnManager _turnManager;
         ICommandHistory _commandHistory;
+
+        IValidCellProvider _moveCellProvider;
+        IValidCellProvider _attackCellProvider;
+
+        ICellDisplays _cellDisplays;
+        IHideable _actionPanel;
 
         public Game(ITurnManager turnManager, ICommandHistory commandHistory)
         {
@@ -18,6 +29,12 @@ namespace Immortal.GameImplementation
         public void Run()
         {
             _turnManager.Start();
+        }
+
+        void DisplayCells(List<Vector2Int> validCells, ICellDisplay prefab)
+        {
+            _cellDisplays.Show(prefab, validCells);
+            _actionPanel.Hide();
         }
 
         public void Load()
