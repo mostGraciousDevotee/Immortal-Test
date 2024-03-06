@@ -1,104 +1,149 @@
 using UnityEngine;
 
-using Immortal.GlobalFactory;
-
-using Immortal.GameImplementation;
-
 using Immortal.UnitFactoryPackage;
 
 using Immortal.CellFactoryPackage;
 
+using Immortal.Command;
 using Immortal.CommandFactoryPackage;
-using Immortal.CommandImplementation;
 
 using Immortal.Controller;
-using Immortal.ControllerImplementation;
 
 using Immortal.PresenterImplementation;
 using Immortal.PresenterFactory;
 using Immortal.GameSystem;
+using Immortal.GenericGlobal;
+using Immortal.GameFactory;
+using System.Collections.Generic;
+using Immortal.ResponderFactory;
+using System;
+using Immortal.Responder;
 
 namespace Immortal.Main
 {
     [RequireComponent(typeof(IMouse))]
-    [RequireComponent(typeof(PresenterContainer))]
     public class BattleMain : MonoBehaviour
     {
-        ActionButtons _actionButtons;
-        IMouse _mouse;
-
         IUnitPresenters _unitPresenters;
         [SerializeField] Marker _marker;
         IGame _game;
-        
-        IUnitFactory _unitFactory;
-        ICellFactory _cellFactory;
-        ICellDisplayContainer _cellDisplayContainer;
-        IActionCommandFactory _commandFactory;
 
-        void Awake()
-        {   
-            _mouse = GetComponent<IMouse>();
-            _mouse.RightMouseButtonDown += HandleRightClick;
+        // Undo UseCase
+        IMouse _mouse;
+        ICommandHistory _commandHistory;
+
+        // Display Range Use Case
+        IPresenterContainer _presenterContainer;
+        IDisplayRangeResponder _moveResponder;
+        IDisplayRangeResponder _attackResponder;
+
+        void Start()
+        {
+            BindResponder();
+            BindUndoController();
+            SetUpActionButtons();
 
             SetUpFactory();
-            
-            SetUpButtons();
+            _game.Run();
+        }
 
-            SetUpGame();
+        void OnDestroy()
+        {
+            UnbindResponder();
+            UnbindUndoController();
+        }
+
+        void BindUndoController()
+        {
+            _mouse = GetComponent<IMouse>();
+            _commandHistory = Singleton<ICommandHistory>.Instance;
+
+            _mouse.RightMouseButtonDown += _commandHistory.Undo;
+        }
+
+        void UnbindUndoController()
+        {
+            _mouse.RightMouseButtonDown -= _commandHistory.Undo;
         }
 
         void SetUpFactory()
         {
-            _unitFactory = GGFactory<IUnitFactory>.Instance;
-            _cellFactory = GGFactory<ICellFactory>.Instance;
-
-            _cellDisplayContainer = GetComponent<PresenterContainer>();
-            _cellDisplayContainer.Init(_cellFactory.GetSquareCells().CellSize);
-
-            _commandFactory = new ActionCommandFactory
-            (
-                _unitFactory,
-                _cellFactory,
-                _cellDisplayContainer
-            );
-
             _unitPresenters = GetComponent<UnitPresenters>();
-            _actionButtons = GetComponent<ActionButtons>();
+
+            _game = Singleton<IGame>.Instance;
+
+            // Binding Unit Presenters and Marker
+            var gameBuilder = Singleton<IGameBuilder>.Instance;
+            gameBuilder.Build(_game, _unitPresenters, _marker);
         }
 
-        private void SetUpGame()
+        void BindResponder()
         {
-            var gameBuilder = new GameBuilder
-            (
-                _unitFactory,
-                _unitPresenters,
-                _marker,
-                _cellFactory,
-                _commandFactory
-            );
+            InitPresenterContainer();
+            InitResponder();
 
-            _game = gameBuilder.MakeGame();
+            BindResponder(_moveResponder);
+            BindResponder(_attackResponder);
         }
 
-        void SetUpButtons()
+        void InitResponder()
         {
-            if (_commandFactory == null)
+            var responderFactory = Singleton<IDisplayRangeResponderFactory>.Instance;
+            _moveResponder = responderFactory.MakeDisplayMoveResponder();
+            _attackResponder = responderFactory.MakeDisplayAttackResponder();
+        }
+
+        void InitPresenterContainer()
+        {
+            _presenterContainer = GetComponent<IPresenterContainer>();
+        }
+
+        void BindResponder(IDisplayRangeResponder responder)
+        {
+            responder.ShowValidRange += _presenterContainer.CellDisplays.Show;
+            responder.ShowValidRange += (a, b, c) => _presenterContainer.ActionPanel.Hide();
+
+            responder.Unshow += _presenterContainer.CellDisplays.Hide;
+            responder.Unshow += _presenterContainer.ActionPanel.Show;
+        }
+
+        void UnbindResponder()
+        {
+            UnbindResponder(_moveResponder);
+            UnbindResponder(_attackResponder);
+        }
+
+        void UnbindResponder(IDisplayRangeResponder responder)
+        {
+            responder.ShowValidRange -= _presenterContainer.CellDisplays.Show;
+            responder.ShowValidRange -= (a, b, c) => _presenterContainer.ActionPanel.Hide();
+
+            responder.Unshow -= _presenterContainer.CellDisplays.Hide;
+            responder.Unshow -= _presenterContainer.ActionPanel.Show;
+        }
+
+        void SetUpActionButtons()
+        {
+            var commandFactory = Singleton<IActionCommandFactory>.Instance;
+            
+            if (commandFactory == null)
             {
                 Debug.LogError("Command Factory is null!");
             }
 
-            _actionButtons.Init(_commandFactory);
-        }
+            var buttonPanel = GetComponent<IButtonPanel>();
+            
+            var displayMove = commandFactory.MakeDisplayMove();
+            var displayAttack = commandFactory.MakeDisplayAttack();
+            var endTurn = commandFactory.MakeEndTurn();
 
-        void Start()
-        {   
-            _game.Run();
-        }
+            var commands = new List<ICommand>();
 
-        void HandleRightClick()
-        {
-            _game.Undo();
+            commands.Add(displayMove);
+            commands.Add(displayAttack);
+            commands.Add(endTurn);
+
+            buttonPanel.Init(commands);
         }
     }
 }

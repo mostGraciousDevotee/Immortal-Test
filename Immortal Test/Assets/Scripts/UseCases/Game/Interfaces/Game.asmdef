@@ -1,9 +1,9 @@
 {
-    "name": "Command-Factory",
+    "name": "Game",
     "rootNamespace": "",
     "references": [
-        "GUID:96d6a639334d23141b641d8729ff82a8",
-        "GUID:f57606e9843913a41af9a5a3ff6154b9"
+        "GUID:87193d6029975c64db9c26588da883b7",
+        "GUID:96d6a639334d23141b641d8729ff82a8"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

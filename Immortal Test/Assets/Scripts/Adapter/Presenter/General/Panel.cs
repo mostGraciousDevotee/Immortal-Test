@@ -1,6 +1,7 @@
 using UnityEngine;
+using Immortal.Presenter;
 
-namespace Immortal.Presenter
+namespace Immortal.PresenterImplementation
 {
     // TODO: This can be merged with ActionButtons
     public class Panel : MonoBehaviour, IHideable

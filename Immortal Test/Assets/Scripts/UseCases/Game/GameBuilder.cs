@@ -10,13 +10,16 @@ using Immortal.Presenter;
 using Immortal.UnitPresenterSystem;
 using Immortal.PresenterFactory;
 
-using Immortal.CommandFactoryPackage;
 using Immortal.GameSystem;
+using Immortal.Command;
+using Immortal.GameFactory;
 
 namespace Immortal.GameImplementation
 {
-    public class GameBuilder
+    public class GameBuilder : IGameBuilder
     {
+        IUnitPresenters _unitPresenters;
+        
         IUnit _adam;
         IUnitPresenter _adamPresenter;
         IUnit _bruce;
@@ -26,31 +29,19 @@ namespace Immortal.GameImplementation
 
         ISquareCells _squareCells;
         IMarker _marker;
-        IActionCommandFactory _commandFactory;
         
         public GameBuilder
         (
             IUnitFactory unitFactory,
-            IUnitPresenters unitPresenters,
-            IMarker marker,
             ICellFactory cellFactory,
-            IActionCommandFactory commandFactory
+            ICommandHistory commandHistory
         )
         {
-            _marker = marker;
-            _commandFactory = commandFactory;
-
             _adam = unitFactory.MakeAdam();
             _bruce = unitFactory.MakeBruce();
             _turnManager = unitFactory.MakeTurnManager();
 
-            _adamPresenter = unitPresenters.Adam;
-            _brucePresenter = unitPresenters.Bruce;
-
             _squareCells = cellFactory.GetSquareCells();
-
-            BuildUnits();
-            PlaceUnits();
         }
 
         void BuildUnits()
@@ -73,9 +64,21 @@ namespace Immortal.GameImplementation
             _squareCells.AddUnit(_bruce);
         }
 
-        public IGame MakeGame()
+        public void Build
+        (
+            IGame game,
+            IUnitPresenters unitPresenters,
+            IMarker marker
+        )
         {
-            return new Game(_turnManager, _commandFactory.MakeCommandHistory());
+            _unitPresenters = unitPresenters;
+            _marker = marker;
+
+            _adamPresenter = unitPresenters.Adam;
+            _brucePresenter = unitPresenters.Bruce;
+
+            BuildUnits();
+            PlaceUnits();
         }
     }
 }

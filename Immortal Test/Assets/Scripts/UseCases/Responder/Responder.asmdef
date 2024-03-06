@@ -1,9 +1,9 @@
 {
-    "name": "Command-Factory",
+    "name": "Responder",
     "rootNamespace": "",
     "references": [
-        "GUID:96d6a639334d23141b641d8729ff82a8",
-        "GUID:f57606e9843913a41af9a5a3ff6154b9"
+        "GUID:ea66edc6dda4d494186c35af5fa2a468",
+        "GUID:7f88039175b694d48a049195a15de956"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

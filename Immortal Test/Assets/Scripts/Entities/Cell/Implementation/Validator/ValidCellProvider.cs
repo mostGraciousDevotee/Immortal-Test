@@ -6,6 +6,7 @@ using Immortal.CellSystem;
 
 namespace Immortal.CellImplementation
 {
+    // TODO : ValidCellProvider is a use case, it should be moved to usecase
     public abstract class ValidCellProvider : IValidCellProvider
     {
         List<Vector2Int> _currentNeighbours = new List<Vector2Int>();

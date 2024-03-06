@@ -330,13 +330,14 @@ GameObject:
   m_Component:
   - component: {fileID: 678818863}
   - component: {fileID: 678818862}
-  - component: {fileID: 678818864}
   - component: {fileID: 678818865}
   - component: {fileID: 678818866}
   - component: {fileID: 678818867}
   - component: {fileID: 678818868}
+  - component: {fileID: 678818869}
+  - component: {fileID: 678818870}
   m_Layer: 0
-  m_Name: BattleMain
+  m_Name: SceneBuilder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,21 +371,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &678818864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 678818861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b38797745563c46a5c84632356f06f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveButtonHandler: {fileID: 1472961018}
-  _attackButtonHandler: {fileID: 892250569}
-  _endTurnButtonHandler: {fileID: 1547707790}
 --- !u!114 &678818865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,8 +425,36 @@ MonoBehaviour:
     type: 3}
   _attackDisplay: {fileID: -5933971735581880658, guid: c3a757f2e47f9c8488c47edc0e0963f9,
     type: 3}
+--- !u!114 &678818869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678818861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b18166043f7f540ab7901cbfbf115a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _cellDisplays: {fileID: 1476820465}
   _actionPanel: {fileID: 1056722464}
+--- !u!114 &678818870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678818861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 162677b5d843e3f47a3cc692dcddf19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonHandlers:
+  - {fileID: 1472961018}
+  - {fileID: 892250569}
+  - {fileID: 1547707790}
 --- !u!1 &734989057
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,6 +544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 748630733}
   - component: {fileID: 748630732}
+  - component: {fileID: 748630734}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -564,6 +579,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748630734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748630731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444f81ee6169f4f4c9f96edc0fcab115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveDisplay: {fileID: -5933971735581880658, guid: 77fc6ca698664af43b843782b58bf4b4,
+    type: 3}
+  _attackDisplay: {fileID: -5933971735581880658, guid: c3a757f2e47f9c8488c47edc0e0963f9,
+    type: 3}
 --- !u!1 &892250567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,6 +1600,7 @@ GameObject:
   - component: {fileID: 1476820466}
   - component: {fileID: 1476820465}
   - component: {fileID: 1476820467}
+  - component: {fileID: 1476820468}
   m_Layer: 0
   m_Name: CellDisplays
   m_TagString: Untagged
@@ -1615,6 +1647,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b57969fac46d640b86191d51bb04d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1476820468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476820464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444f81ee6169f4f4c9f96edc0fcab115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveDisplay: {fileID: -5933971735581880658, guid: 77fc6ca698664af43b843782b58bf4b4,
+    type: 3}
+  _attackDisplay: {fileID: -5933971735581880658, guid: c3a757f2e47f9c8488c47edc0e0963f9,
+    type: 3}
 --- !u!1 &1547707788
 GameObject:
   m_ObjectHideFlags: 0

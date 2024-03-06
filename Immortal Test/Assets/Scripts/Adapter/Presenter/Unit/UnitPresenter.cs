@@ -29,7 +29,8 @@ namespace Immortal.PresenterImplementation
             (
                 position.x * _cellSize,
                 transform.position.y,
-                position.y * _cellSize);
+                position.y * _cellSize
+            );
         }
 
         void OnUnitActive()

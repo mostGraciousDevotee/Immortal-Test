@@ -8,5 +8,6 @@ namespace Immortal.PresenterFactory
     {
         void Init(int cellSize);
         List<ICellDisplay> Build(ICellDisplay cellDisplayPrefab, List<Vector2Int> validPos);
+        List<ICellDisplay> Build(ICellDisplay cellDisplayPrefab, int cellSize, List<Vector2Int> validPos);
     }
 }

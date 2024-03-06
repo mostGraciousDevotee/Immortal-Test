@@ -1,57 +1,32 @@
-using Immortal.CellSystem;
 using Immortal.Command;
-using Immortal.Presenter;
-using Immortal.UnitSystem;
+using Immortal.Responder;
 
 namespace Immortal.CommandImplementation
 {
-    public abstract class DisplayRange : ActionCommand
+    public class DisplayRange : ICommand
     {
         ICommandHistory _commandHistory;
-        IValidCellProvider _cellValidator;
+        IDisplayRangeResponder _responder;
 
-        ICellDisplays _cellDisplays;
-        ICellDisplay _cellDisplayPrefab;
-        IHideable _actionPanel;
-
-        protected DisplayRange
+        public DisplayRange
         (
-            ITurnManager turnManager,
             ICommandHistory commandHistory,
-            IValidCellProvider cellProvider,
-            ICellDisplays cellDisplays,
-            ICellDisplay cellDisplayPrefab,
-            IHideable actionPanel
-        ) : base(turnManager)
+            IDisplayRangeResponder responder
+        )
         {
             _commandHistory = commandHistory;
-            _cellValidator = cellProvider;
-
-            _cellDisplays = cellDisplays;
-            _cellDisplayPrefab = cellDisplayPrefab;
-            _actionPanel = actionPanel;
+            _responder = responder;
         }
 
-        public sealed override void Execute()
+        public void Execute()
         {
-            var currentUnit = _turnManager.CurrentUnit;
-            var unitPos = currentUnit.Position;
-
-            var range = GetRange(currentUnit);
-
-            var validPositions = _cellValidator.GetValidCells(unitPos, range);
-
-            _cellDisplays.Show(_cellDisplayPrefab, validPositions);
-            _actionPanel.Hide();
+            _responder.Respond();
             _commandHistory.Push(this);
         }
 
-        public sealed override void Undo()
+        public void Undo()
         {
-            _actionPanel.Show();
-            _cellDisplays.Hide();
+            _responder.Unrespond();
         }
-
-        protected abstract int GetRange(IUnit currentUnit);
     }
 }

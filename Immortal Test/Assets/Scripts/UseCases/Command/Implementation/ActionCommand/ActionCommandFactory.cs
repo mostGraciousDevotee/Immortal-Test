@@ -2,18 +2,21 @@ using Immortal.Command;
 using Immortal.CommandFactoryPackage;
 
 using Immortal.UnitFactoryPackage;
-using Immortal.CellFactoryPackage;
-using Immortal.PresenterFactory;
+
+using Immortal.GameSystem;
+using Immortal.Responder;
+using Immortal.ResponderFactory;
 
 namespace Immortal.CommandImplementation
 {
     public class ActionCommandFactory : IActionCommandFactory
     {   
         IUnitFactory _unitFactory;
-        ICellFactory _cellFactory;
-        ICellDisplayContainer _cellDisplayContainer;
 
+        IGame _game;
+        IDisplayRangeResponderFactory _responderFactory;
         ICommandHistory _commandHistory;
+
         ICommand _displayMove;
         ICommand _displayAttack;
         ICommand _endTurn;
@@ -21,38 +24,23 @@ namespace Immortal.CommandImplementation
         public ActionCommandFactory
         (
             IUnitFactory unitFactory,
-            ICellFactory cellFactory,
-            ICellDisplayContainer cellDisplayContainer
+            IDisplayRangeResponderFactory responderFactory,
+            ICommandHistory commandHistory
         )
         {
             _unitFactory = unitFactory;
-            _cellFactory = cellFactory;
-            _cellDisplayContainer = cellDisplayContainer;
-        }
-
-        // TODO : This should be made private
-        public ICommandHistory MakeCommandHistory()
-        {
-            if (_commandHistory == null)
-            {
-                _commandHistory = new CommandHistory();
-            }
-
-            return _commandHistory;
+            _responderFactory = responderFactory;
+            _commandHistory = commandHistory;
         }
 
         public ICommand MakeDisplayAttack()
         {
             if (_displayAttack == null)
             {
-                _displayAttack = new DisplayAttack
+                _displayAttack = new DisplayRange
                 (
-                    _unitFactory.MakeTurnManager(),
-                    MakeCommandHistory(),
-                    _cellFactory.GetValidAttackProvider(),
-                    _cellDisplayContainer.CellDisplays,
-                    _cellDisplayContainer.AttackDisplayPrefab,
-                    _cellDisplayContainer.ActionPanel
+                    _commandHistory,  // command history
+                    _responderFactory.MakeDisplayAttackResponder()
                 );
             }
 
@@ -61,18 +49,11 @@ namespace Immortal.CommandImplementation
 
         public ICommand MakeDisplayMove()
         {
-            if (_displayMove == null)
-            {
-                _displayMove = new DisplayMovement
-                (
-                    _unitFactory.MakeTurnManager(),
-                    MakeCommandHistory(),
-                    _cellFactory.GetValidMoveProvider(),
-                    _cellDisplayContainer.CellDisplays,
-                    _cellDisplayContainer.MoveDisplayPrefab,
-                    _cellDisplayContainer.ActionPanel
-                );
-            }
+            _displayMove = new DisplayRange
+            (
+                _commandHistory,
+                _responderFactory.MakeDisplayMoveResponder()
+            );
 
             return _displayMove;
         }

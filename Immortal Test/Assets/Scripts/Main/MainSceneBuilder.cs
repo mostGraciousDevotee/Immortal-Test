@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-using Immortal.GlobalFactory;
 using Immortal.CommandFactoryPackage;
 using Immortal.Command;
 using Immortal.Controller;
+using Immortal.GenericGlobal;
 
 namespace Immortal.Main
 {
@@ -24,7 +24,7 @@ namespace Immortal.Main
             var commands = new List<ICommand>();
 
             // TODO : Implement LoadGame button and Option button!
-            var mainCommandFactory = GGFactory<IMainCommandFactory>.Instance;
+            var mainCommandFactory = Singleton<IMainCommandFactory>.Instance;
 
             var newGame = mainCommandFactory.MakeNewGame();
             var loadGame = newGame;
